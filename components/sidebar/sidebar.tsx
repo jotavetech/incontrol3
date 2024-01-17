@@ -6,13 +6,13 @@ import { ModeToggle } from "../mode-toggle";
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col items-center h-full w-full dark:bg-[#1E1F22] bg-[#e3e5e8] px-5">
+    <div className="flex flex-col items-center h-full w-full dark:bg-[#121314] bg-[#e3e5e8] px-5">
       <p className="capitalize text-xl font-semibold py-14">
         Hello, <span className="text-primary">Joao</span>
       </p>
       <nav className="w-full flex flex-col gap-4">
         <SidebarNavButton link="home">
-          <PiggyBank className="w-5 h-5" /> Home
+          <Home className="w-5 h-5" /> Home
         </SidebarNavButton>
         <SidebarNavButton link="entries">
           <PiggyBank className="w-5 h-5" /> Entries
