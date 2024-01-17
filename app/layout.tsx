@@ -4,7 +4,7 @@ import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 import "./globals.css";
 
