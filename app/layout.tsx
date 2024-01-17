@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 
 import "./globals.css";
 
-export const fontSans = Poppins({
+const fontSans = Poppins({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
