@@ -7,6 +7,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import { Home } from "lucide-react";
+
 const resumeMock = [
   {
     bills: 200,
@@ -28,11 +30,13 @@ const resumeMock = [
 const HomePage = () => {
   return (
     <div>
-      <h1 className="text-xl font-bold ml-4 my-4 md:ml-8 md:my-8 md:text-3xl">
-        Hello, Joao
-      </h1>
-      <div className="flex flex-col h-full w-full items-center md:items-start md:p-8">
-        <div className="w-full md:w-96">
+      <div className="flex w-full justify-between items-center">
+        <h1 className="text-xl font-bold ml-4 my-4 md:ml-8 md:my-8 md:text-3xl flex gap-2 items-center">
+          <Home /> Home
+        </h1>
+      </div>
+      <div className="flex flex-col h-full w-full items-center md:items-start md:px-8">
+        <div className="w-full md:w-1/2 lg:w-[500px]">
           <Carousel>
             <CarouselContent>
               {resumeMock.map((resume) => (

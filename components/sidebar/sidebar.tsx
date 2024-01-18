@@ -6,7 +6,7 @@ import { ModeToggle } from "../mode-toggle";
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col items-center h-full w-full dark:bg-[#121314] bg-[#e3e5e8] px-5">
+    <div className="flex flex-col items-center h-full w-full dark:bg-[#0d0e0f] bg-[#f5f5f5] px-5">
       <p className="capitalize text-xl font-semibold py-14">
         Hello, <span className="text-primary">Joao</span>
       </p>

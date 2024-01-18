@@ -7,6 +7,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import { CircleDollarSign } from "lucide-react";
+
 interface ResumeCardProps {
   mouth: string;
   entries: number;
@@ -15,9 +17,11 @@ interface ResumeCardProps {
 
 const ResumeCard = ({ mouth, entries, bills }: ResumeCardProps) => {
   return (
-    <Card className="">
+    <Card className="md:h-[250px]">
       <CardHeader>
-        <CardTitle className="text-lg">{mouth} Resume</CardTitle>
+        <CardTitle className="text-lg flex gap-2 items-center">
+          {mouth} Resume <CircleDollarSign />
+        </CardTitle>
         <CardDescription className="text-xs">
           This is the result for the month of {mouth}:
         </CardDescription>
