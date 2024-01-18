@@ -14,7 +14,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         <Sidebar />
       </div>
       <MobileBar />
-      <main className="md:pl-[72px] h-full">{children}</main>
+      <main className="md:pl-[250px] h-full">{children}</main>
     </div>
   );
 };
