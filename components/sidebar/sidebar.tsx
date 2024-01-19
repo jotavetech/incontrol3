@@ -1,8 +1,10 @@
-import { BarChart, Home, PiggyBank, Wallet } from "lucide-react";
+import { BarChart, Home, PiggyBank, Plus, Wallet } from "lucide-react";
 
 import SidebarNavButton from "./sidebar-nav-button";
 
 import { ModeToggle } from "../mode-toggle";
+import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
 
 const Sidebar = () => {
   return (
@@ -23,6 +25,11 @@ const Sidebar = () => {
         <SidebarNavButton link="resume">
           <BarChart className="w-5 h-5" /> Resume
         </SidebarNavButton>
+        <Separator />
+        <Button className="flex justify-start gap-2">
+          <Plus className="w-5 h-5" />
+          Add Register
+        </Button>
       </nav>
       <div className="flex flex-col justify-center items-center w-full gap-2 text-sm absolute bottom-10 left-0">
         <ModeToggle />
