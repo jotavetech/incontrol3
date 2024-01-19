@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
 import "./globals.css";
+import ModalProvider from "@/components/providers/modal-provider";
 
 const fontSans = Poppins({
   weight: ["300", "400", "500", "600", "700"],
@@ -29,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(fontSans.className)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ModalProvider />
           {children}
           <Toaster />
         </ThemeProvider>

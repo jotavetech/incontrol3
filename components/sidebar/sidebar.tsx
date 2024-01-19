@@ -1,12 +1,18 @@
+"use client";
+
 import { BarChart, Home, PiggyBank, Plus, Wallet } from "lucide-react";
 
 import SidebarNavButton from "./sidebar-nav-button";
 
 import { ModeToggle } from "../mode-toggle";
-import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import { Button } from "../ui/button";
+
+import useModal from "@/hooks/use-modal-store";
 
 const Sidebar = () => {
+  const { onOpen } = useModal();
+
   return (
     <div className="flex flex-col items-center h-full w-full dark:bg-[#0d0e0f] bg-[#f5f5f5] px-5">
       <p className="capitalize text-xl font-semibold py-14">
@@ -26,7 +32,10 @@ const Sidebar = () => {
           <BarChart className="w-5 h-5" /> Resume
         </SidebarNavButton>
         <Separator />
-        <Button className="flex justify-start gap-2">
+        <Button
+          className="flex justify-start gap-2"
+          onClick={() => onOpen("createRegister")}
+        >
           <Plus className="w-5 h-5" />
           Add Register
         </Button>
