@@ -9,7 +9,7 @@ import {
 
 import { cn, formatValue } from "@/lib/utils";
 
-import { Plus } from "lucide-react";
+import { BarChart, Plus } from "lucide-react";
 
 interface HomeMonthStatusProps {
   entriesValue: number;
@@ -25,8 +25,9 @@ const HomeMonthStatus = ({
   return (
     <Card className="md:h-[250px] rounded-none">
       <CardHeader>
-        <CardTitle className="text-lg md:text-2xl flex gap-2 items-center capitalize">
+        <CardTitle className="text-lg md:text-2xl flex gap-2 items-center capitalize justify-between">
           Current Month Status
+          <BarChart className="opacity-70" />
         </CardTitle>
         <CardDescription className="text-xs md:text-base">
           Currently your status is:

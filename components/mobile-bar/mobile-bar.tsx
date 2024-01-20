@@ -12,7 +12,7 @@ const MobileBar = () => {
   const { onOpen } = useModal();
 
   return (
-    <div className="fixed md:hidden bottom-0 left-0 w-full h-[70px] dark:bg-[#0d0e0f] bg-[#f5f5f5] rounded-t-3xl">
+    <div className="fixed md:hidden bottom-0 left-0 w-full h-[70px] dark:bg-[#0d0e0f] bg-[#f5f5f5] rounded-t-3xl z-30">
       <nav className="flex w-full justify-around  items-center h-full">
         <MobileNavButton link="home">
           <Home />

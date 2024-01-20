@@ -17,18 +17,18 @@ import {
   Plus,
 } from "lucide-react";
 
-interface ResumeCardProps {
+interface HomeResumeCardProps {
   mouth: string;
   entries: number;
   bills: number;
 }
 
-const ResumeCard = ({ mouth, entries, bills }: ResumeCardProps) => {
+const HomeResumeCard = ({ mouth, entries, bills }: HomeResumeCardProps) => {
   return (
     <Card className="md:h-[250px] rounded-none">
       <CardHeader>
-        <CardTitle className="text-lg md:text-2xl flex gap-2 items-center">
-          {mouth} Resume <CircleDollarSign />
+        <CardTitle className="text-lg md:text-2xl flex gap-2 items-center justify-between capitalize">
+          {mouth} Resume <CircleDollarSign className="opacity-70" />
         </CardTitle>
         <CardDescription className="text-xs md:text-base">
           This is the result for the month of {mouth}:
@@ -61,4 +61,4 @@ const ResumeCard = ({ mouth, entries, bills }: ResumeCardProps) => {
   );
 };
 
-export default ResumeCard;
+export default HomeResumeCard;
