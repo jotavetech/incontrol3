@@ -1,13 +1,6 @@
+import HomeMonthStatus from "@/components/home/home-month-status";
 import ResumeCard from "@/components/resume-card";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 import {
   Carousel,
@@ -18,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
 
-import { Home, Plus, Star, Minus } from "lucide-react";
+import { Home, Plus, Star, Minus, Menu } from "lucide-react";
 
 const resumeMock = [
   {
@@ -41,10 +34,13 @@ const resumeMock = [
 const HomePage = () => {
   return (
     <div>
-      <div className="flex w-full items-center">
+      <div className="flex w-full justify-between items-center">
         <h1 className="text-xl font-bold ml-4 my-4 md:ml-8 md:my-8 md:text-3xl flex items-center">
           in<span className="text-red-500">Control</span>
         </h1>
+        <Button variant={"ghost"} className="mr-4">
+          <Menu />
+        </Button>
       </div>
       <div className="flex flex-col h-full w-full lg:max-w-[1600px] items-center md:items-start md:px-8 px-2">
         <div className="w-full flex flex-col md:flex-row gap-5">
@@ -52,26 +48,9 @@ const HomePage = () => {
           <p className="pl-4 font-semibold text-base flex gap-2 items-center md:hidden">
             Hello, its good to see you! <Star className="w-4 h-4" />
           </p>
-          <Card className="md:h-[250px] md:w-1/2 rounded-none">
-            <CardHeader>
-              <CardTitle className="text-lg md:text-2xl flex gap-2 items-center">
-                Actual Month Status
-              </CardTitle>
-              <CardDescription className="text-xs md:text-lg">
-                Your actual status is:
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-green-500 flex items-center text-2xl">
-                $200.00 <Plus className="w-4 h-4" />
-              </p>
-            </CardContent>
-            <CardFooter>
-              <p className="text-gray-800 text-xs dark:text-zinc-400">
-                Continue adding register to track your finances
-              </p>
-            </CardFooter>
-          </Card>
+          <div className="md:w-1/2">
+            <HomeMonthStatus entriesValue={800} billsValue={400} />
+          </div>
           <Carousel className="md:w-1/2">
             <CarouselContent>
               {resumeMock.map((resume) => (
@@ -83,7 +62,6 @@ const HomePage = () => {
                   />
                 </CarouselItem>
               ))}
-              <CarouselItem>Your summaries ended</CarouselItem>
             </CarouselContent>
             <CarouselNext className="hidden md:flex right-4 opacity-20 hover:opacity-100" />
             <CarouselPrevious className="hidden md:flex left-4 opacity-20 hover:opacity-100" />
