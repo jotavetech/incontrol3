@@ -1,4 +1,5 @@
 import HomeMonthStatus from "@/components/home/home-month-status";
+import { ModeToggle } from "@/components/mode-toggle";
 import ResumeCard from "@/components/resume-card";
 import { Button } from "@/components/ui/button";
 
@@ -9,6 +10,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 
 import { Home, Plus, Star, Minus, Menu } from "lucide-react";
@@ -38,9 +44,16 @@ const HomePage = () => {
         <h1 className="text-xl font-bold ml-4 my-4 md:ml-8 md:my-8 md:text-3xl flex items-center">
           in<span className="text-red-500">Control</span>
         </h1>
-        <Button variant={"ghost"} className="mr-4">
-          <Menu />
-        </Button>
+        <div className="flex md:hidden">
+          <Popover>
+            <PopoverTrigger className="mr-4">
+              <Menu />
+            </PopoverTrigger>
+            <PopoverContent className="flex items-center gap-2 mr-3 shadow-lg">
+              <ModeToggle /> Change theme
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
       <div className="flex flex-col h-full w-full lg:max-w-[1600px] items-center md:items-start md:px-8 px-2">
         <div className="w-full flex flex-col md:flex-row gap-5">
