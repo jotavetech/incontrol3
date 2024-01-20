@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/drawer";
 
 import { Button } from "../ui/button";
+import AddRegisterForm from "../forms/add-register-form";
 
 const CreateRegister = () => {
   const { isOpen, onClose, type } = useModal();
@@ -30,7 +31,7 @@ const CreateRegister = () => {
           <DrawerDescription>Keep tracking your finances</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter>
-          <Button>Submit</Button>
+          <AddRegisterForm />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
