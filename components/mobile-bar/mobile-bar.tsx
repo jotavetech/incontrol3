@@ -16,9 +16,11 @@ const MobileBar = () => {
       <nav className="flex w-full justify-around  items-center h-full">
         <MobileNavButton link="home">
           <Home />
+          Home
         </MobileNavButton>
         <MobileNavButton link="entries">
           <PiggyBank />
+          Entries
         </MobileNavButton>
         <Button
           className="w-14 h-14 rounded-full shadow-sm"
@@ -28,9 +30,11 @@ const MobileBar = () => {
         </Button>
         <MobileNavButton link="bills">
           <Wallet />
+          Bills
         </MobileNavButton>
         <MobileNavButton link="resume">
           <BarChart />
+          Analytics
         </MobileNavButton>
       </nav>
     </div>

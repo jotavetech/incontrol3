@@ -14,7 +14,10 @@ interface MobileNavButtonProps {
 const MobileNavButton = ({ link, children }: MobileNavButtonProps) => {
   return (
     <Button variant={"mobile"} className="w-12 h-12 rounded-full">
-      <Link href={`/${link}`} className="flex justify-center items-center">
+      <Link
+        href={`/${link}`}
+        className="flex flex-col justify-center items-center gap-1 text-xs font-medium"
+      >
         {children}
       </Link>
     </Button>

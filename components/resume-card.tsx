@@ -9,7 +9,13 @@ import {
 
 import { formatValue } from "@/lib/utils";
 
-import { ArrowLeft, ArrowRight, CircleDollarSign } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CircleDollarSign,
+  Minus,
+  Plus,
+} from "lucide-react";
 
 interface ResumeCardProps {
   mouth: string;
@@ -24,20 +30,23 @@ const ResumeCard = ({ mouth, entries, bills }: ResumeCardProps) => {
         <CardTitle className="text-lg md:text-2xl flex gap-2 items-center">
           {mouth} Resume <CircleDollarSign />
         </CardTitle>
-        <CardDescription className="text-xs md:text-lg">
+        <CardDescription className="text-xs md:text-base">
           This is the result for the month of {mouth}:
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div>
+        <div className="flex items-center gap-2">
           Money that came in:{" "}
-          <span className="font-semibold text-green-500">
+          <span className="font-semibold text-green-500 flex items-center">
+            <Plus className="w-4 h-4" />
             {formatValue(entries)}
           </span>
         </div>
-        <div>
+
+        <div className="flex items-center gap-2">
           Money spent on bills:{" "}
-          <span className="font-semibold text-red-500">
+          <span className="font-semibold text-red-500 flex items-center">
+            <Minus className="w-4 h-4" />
             {formatValue(bills)}
           </span>
         </div>

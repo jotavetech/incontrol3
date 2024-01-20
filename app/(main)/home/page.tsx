@@ -1,7 +1,6 @@
 import HomeMonthStatus from "@/components/home/home-month-status";
 import { ModeToggle } from "@/components/mode-toggle";
 import ResumeCard from "@/components/resume-card";
-import { Button } from "@/components/ui/button";
 
 import {
   Carousel,
@@ -10,19 +9,21 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+
 import { Separator } from "@/components/ui/separator";
 
-import { Home, Plus, Star, Minus, Menu } from "lucide-react";
+import { Star, Menu } from "lucide-react";
 
 const resumeMock = [
   {
     bills: 200,
-    entries: 800,
+    entries: 8000000,
     mouth: "January",
   },
   {
