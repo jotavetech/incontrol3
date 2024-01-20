@@ -41,9 +41,9 @@ const resumeMock = [
 const HomePage = () => {
   return (
     <div>
-      <div className="flex w-full justify-between items-center">
-        <h1 className="text-xl font-bold ml-4 my-4 md:ml-8 md:my-8 md:text-3xl flex gap-2 items-center">
-          <Home /> Home
+      <div className="flex w-full items-center">
+        <h1 className="text-xl font-bold ml-4 my-4 md:ml-8 md:my-8 md:text-3xl flex items-center">
+          in<span className="text-red-500">Control</span>
         </h1>
       </div>
       <div className="flex flex-col h-full w-full lg:max-w-[1600px] items-center md:items-start md:px-8 px-2">
