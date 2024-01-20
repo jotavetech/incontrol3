@@ -1,20 +1,15 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-
-import { ListOrdered, TrendingDown, TrendingUp } from "lucide-react";
 import { Separator } from "../ui/separator";
+
+import { TrendingDown, TrendingUp } from "lucide-react";
+
 import { cn, formatValue } from "@/lib/utils";
+
 import Link from "next/link";
 
 interface HomeRegisterCardProps {
-  type: "bills" | "entries";
+  type: "expenses" | "entries";
   items: Array<{
     id: string;
     amount: number;
@@ -26,11 +21,11 @@ interface HomeRegisterCardProps {
 const HomeRegisterCard = ({ items, type }: HomeRegisterCardProps) => {
   return (
     <Card className="rounded-none">
-      <CardHeader>
-        <CardTitle className="text-lg md:text-2xl justify-between flex gap-2 items-center">
-          {type === "entries" ? "Entries" : "Bills"}
+      <CardHeader className="py-3">
+        <CardTitle className="text-lg md:text-xl justify-between flex gap-2 items-center">
+          {type === "entries" ? "Entries" : "Expenses"}
           <Link
-            href={type === "entries" ? "/entries" : "/bills"}
+            href={type === "entries" ? "/entries" : "/expenses"}
             className="flex text-xs items-center gap-2 opacity-70 font-medium"
           >
             <span>Click to see details</span>

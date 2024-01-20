@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { Button } from "../ui/button";
 
-type LinkType = "home" | "entries" | "bills" | "resume";
+type LinkType = "home" | "entries" | "expenses" | "resume";
 
 interface SidebarNavButtonProps {
   children: ReactNode;

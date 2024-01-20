@@ -24,17 +24,17 @@ import { Star, Menu, BarChart3 } from "lucide-react";
 
 const resumeMock = [
   {
-    bills: 200,
+    expenses: 200,
     entries: 8000000,
     mouth: "January",
   },
   {
-    bills: 500,
+    expenses: 500,
     entries: 2200,
     mouth: "December",
   },
   {
-    bills: 700,
+    expenses: 700,
     entries: 800,
     mouth: "November",
   },
@@ -110,14 +110,14 @@ const HomePage = () => {
             Hello, its good to see you! <Star className="w-4 h-4" />
           </p>
           <div className="md:w-1/2">
-            <HomeMonthStatus entriesValue={800} billsValue={400} />
+            <HomeMonthStatus entriesValue={800} expensesValue={400} />
           </div>
           <Carousel className="md:w-1/2">
             <CarouselContent>
               {resumeMock.map((resume) => (
-                <CarouselItem key={resume.bills} className="cursor-pointer">
+                <CarouselItem key={resume.expenses} className="cursor-pointer">
                   <HomeResumeCard
-                    bills={resume.bills}
+                    expenses={resume.expenses}
                     entries={resume.entries}
                     mouth={resume.mouth}
                   />
@@ -138,7 +138,7 @@ const HomePage = () => {
               <HomeRegisterCard items={itemsMock} type="entries" />
             </div>
             <div className="md:w-1/2">
-              <HomeRegisterCard items={itemsMock} type="bills" />
+              <HomeRegisterCard items={itemsMock} type="expenses" />
             </div>
           </div>
         </div>

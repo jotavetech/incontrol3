@@ -28,9 +28,9 @@ const MobileBar = () => {
         >
           <Plus />
         </Button>
-        <MobileNavButton link="bills">
+        <MobileNavButton link="expenses">
           <Wallet />
-          Bills
+          Expenses
         </MobileNavButton>
         <MobileNavButton link="resume">
           <BarChart />

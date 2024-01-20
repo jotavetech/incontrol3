@@ -25,8 +25,8 @@ const Sidebar = () => {
         <SidebarNavButton link="entries">
           <PiggyBank className="w-5 h-5" /> Entries
         </SidebarNavButton>
-        <SidebarNavButton link="bills">
-          <Wallet className="w-5 h-5" /> Bills
+        <SidebarNavButton link="expenses">
+          <Wallet className="w-5 h-5" /> Expenses
         </SidebarNavButton>
         <SidebarNavButton link="resume">
           <BarChart className="w-5 h-5" /> Resume

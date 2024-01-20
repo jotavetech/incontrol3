@@ -13,14 +13,14 @@ import { BarChart, Plus } from "lucide-react";
 
 interface HomeMonthStatusProps {
   entriesValue: number;
-  billsValue: number;
+  expensesValue: number;
 }
 
 const HomeMonthStatus = ({
   entriesValue,
-  billsValue,
+  expensesValue,
 }: HomeMonthStatusProps) => {
-  const isPositive = () => entriesValue > billsValue;
+  const isPositive = () => entriesValue > expensesValue;
 
   return (
     <Card className="md:h-[250px] rounded-none">
@@ -41,12 +41,12 @@ const HomeMonthStatus = ({
           )}
         >
           {isPositive() && <Plus className="w-4 h-4" />}
-          {formatValue(entriesValue - billsValue)}
+          {formatValue(entriesValue - expensesValue)}
         </p>
       </CardContent>
       <CardFooter>
         <p className="text-gray-800 text-xs dark:text-zinc-400">
-          Keep adding your expenses/bills to be inControl of your finances
+          Keep adding your expenses to be inControl of your finances
         </p>
       </CardFooter>
     </Card>

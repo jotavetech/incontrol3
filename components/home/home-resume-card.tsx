@@ -20,10 +20,10 @@ import {
 interface HomeResumeCardProps {
   mouth: string;
   entries: number;
-  bills: number;
+  expenses: number;
 }
 
-const HomeResumeCard = ({ mouth, entries, bills }: HomeResumeCardProps) => {
+const HomeResumeCard = ({ mouth, entries, expenses }: HomeResumeCardProps) => {
   return (
     <Card className="md:h-[250px] rounded-none">
       <CardHeader>
@@ -44,10 +44,10 @@ const HomeResumeCard = ({ mouth, entries, bills }: HomeResumeCardProps) => {
         </div>
 
         <div className="flex items-center gap-2">
-          Money spent on bills:{" "}
+          Money spent on expenses:{" "}
           <span className="font-semibold text-red-500 flex items-center">
             <Minus className="w-4 h-4" />
-            {formatValue(bills)}
+            {formatValue(expenses)}
           </span>
         </div>
       </CardContent>
