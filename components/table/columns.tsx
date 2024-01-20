@@ -14,12 +14,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { formatValue } from "@/lib/utils";
+
 export type Item = {
   id: string;
   description: string;
-
   type: string;
   amount: number;
+  data: string;
 };
 
 export const columns: ColumnDef<Item>[] = [
@@ -33,32 +35,32 @@ export const columns: ColumnDef<Item>[] = [
   },
   {
     accessorKey: "amount",
+    header: "Amount",
+
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("amount"));
+      const formatted = formatValue(amount);
+      return <div className="font-medium">{formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "data",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="text-xs md:text-base"
         >
-          Amount
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          Data
+          <ArrowUpDown className="ml-2 h-3 w-3 md:h-4 md:w-4" />
         </Button>
       );
-    },
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
     },
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const payment = row.original;
-
+    cell: () => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

@@ -11,6 +11,7 @@ const mockData = [
     status: "Bill",
     type: "Home",
     amount: 130,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -18,6 +19,7 @@ const mockData = [
     status: "Bill",
     type: "Home",
     amount: 220,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -25,6 +27,7 @@ const mockData = [
     status: "Entrie",
     type: "Work",
     amount: 1500,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -32,6 +35,7 @@ const mockData = [
     status: "bill",
     type: "Car",
     amount: 330,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -39,6 +43,7 @@ const mockData = [
     status: "Bill",
     type: "Shop",
     amount: 12,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -46,6 +51,7 @@ const mockData = [
     status: "bill",
     type: "Animal",
     amount: 130,
+    data: "01/19/2024",
   },
 
   {
@@ -54,6 +60,7 @@ const mockData = [
     status: "bill",
     type: "Animal",
     amount: 130,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -61,6 +68,7 @@ const mockData = [
     status: "bill",
     type: "Animal",
     amount: 130,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -68,6 +76,7 @@ const mockData = [
     status: "bill",
     type: "Animal",
     amount: 130,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -75,6 +84,7 @@ const mockData = [
     status: "bill",
     type: "Animal",
     amount: 130,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -82,6 +92,7 @@ const mockData = [
     status: "bill",
     type: "Animal",
     amount: 130,
+    data: "01/19/2024",
   },
   {
     id: "1",
@@ -89,13 +100,15 @@ const mockData = [
     status: "bill",
     type: "Animal",
     amount: 130,
+    data: "01/19/2024",
   },
   {
     id: "1",
     description: "Ração",
     status: "bill",
-    type: "Animal",
+    type: "Animallllllllllasfkhajkfghasjkgohasgjkasl",
     amount: 130,
+    data: "01/19/2024",
   },
 ];
 

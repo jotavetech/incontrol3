@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { formatValue } from "@/lib/utils";
 
 import { CircleDollarSign } from "lucide-react";
 
@@ -29,11 +30,11 @@ const ResumeCard = ({ mouth, entries, bills }: ResumeCardProps) => {
       <CardContent>
         <div>
           Money that came in:{" "}
-          <span className="font-semibold">{entries.toFixed(2)}</span>
+          <span className="font-semibold">{formatValue(entries)}</span>
         </div>
         <div>
           Money spent on bills:{" "}
-          <span className="font-semibold">{bills.toFixed(2)}</span>
+          <span className="font-semibold">{formatValue(bills)}</span>
         </div>
       </CardContent>
       <CardFooter>

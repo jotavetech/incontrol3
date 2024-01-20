@@ -52,7 +52,7 @@ export function DataTable<TData, TValue>({
         <Table className="max-w-full md:w-[600px] lg:w-[1000px]">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className="max-w-full">
+              <TableRow key={headerGroup.id} className="w-full">
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
