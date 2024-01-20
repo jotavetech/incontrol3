@@ -18,7 +18,7 @@ import { formatValue } from "@/lib/utils";
 
 export type Item = {
   id: string;
-  description: string;
+  name: string;
   type: string;
   amount: number;
   data: string;
@@ -26,9 +26,10 @@ export type Item = {
 
 export const columns: ColumnDef<Item>[] = [
   {
-    accessorKey: "description",
+    accessorKey: "name",
     header: "Description",
   },
+
   {
     accessorKey: "type",
     header: "Type",
