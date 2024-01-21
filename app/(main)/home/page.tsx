@@ -2,8 +2,6 @@ import HomeResumeCard from "@/components/home/home-resume-card";
 import HomeMonthStatus from "@/components/home/home-month-status";
 import HomeRegisterCard from "@/components/home/home-register-card";
 
-import { ModeToggle } from "@/components/mode-toggle";
-
 import {
   Carousel,
   CarouselContent,
@@ -12,15 +10,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-
 import { Separator } from "@/components/ui/separator";
 
-import { Star, Menu, BarChart3 } from "lucide-react";
+import { Star, BarChart3 } from "lucide-react";
+import HomeMobileMenu from "@/components/home/home-mobile-menu";
 
 const resumeMock = [
   {
@@ -93,14 +86,7 @@ const HomePage = () => {
           in<span className="text-red-500">Control</span>
         </h1>
         <div className="flex md:hidden">
-          <Popover>
-            <PopoverTrigger className="mr-4">
-              <Menu />
-            </PopoverTrigger>
-            <PopoverContent className="flex items-center gap-2 mr-3 shadow-lg">
-              <ModeToggle /> Change theme
-            </PopoverContent>
-          </Popover>
+          <HomeMobileMenu />
         </div>
       </div>
       <div className="flex flex-col h-full w-full lg:max-w-[1600px] items-center md:items-start md:px-8 px-2">
