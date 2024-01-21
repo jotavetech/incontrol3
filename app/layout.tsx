@@ -4,11 +4,13 @@ import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
+import ModalProvider from "@/components/providers/modal-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
+import { ClerkProvider } from "@clerk/nextjs";
+
 import "./globals.css";
-import ModalProvider from "@/components/providers/modal-provider";
 
 const fontSans = Poppins({
   weight: ["300", "400", "500", "600", "700"],
@@ -27,18 +29,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      ></meta>
-      <body className={cn(fontSans.className)}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ModalProvider />
-          {children}
-          <Toaster />
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={cn(fontSans.className)}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ModalProvider />
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
