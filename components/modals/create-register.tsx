@@ -11,13 +11,26 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 
-import { Button } from "../ui/button";
 import AddRegisterForm from "../forms/add-register-form";
+
+import { useEffect } from "react";
 
 const CreateRegister = () => {
   const { isOpen, onClose, type } = useModal();
 
   const isModalOpen = isOpen && type === "createRegister";
+
+  useEffect(() => {
+    const keyboardHandleClose = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === "Esc") onClose();
+    };
+
+    window.addEventListener("keydown", keyboardHandleClose);
+
+    return () => {
+      window.removeEventListener("keydown", keyboardHandleClose);
+    };
+  }, [onClose]);
 
   const handleClose = () => {
     onClose();

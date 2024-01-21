@@ -46,7 +46,7 @@ const Sidebar = () => {
       <div className="flex flex-col justify-center items-center w-full gap-2 text-sm absolute bottom-10 left-0 px-5">
         <ModeToggle />
         <p>Toggle theme.</p>
-        <div className="w-full flex items-center pl-4 gap-4 mt-5 bg-[#050505] py-4 rounded-2xl">
+        <div className="w-full flex items-center pl-4 gap-4 mt-5 bg-[#fefefe] dark:bg-[#050505] py-4 rounded-2xl">
           <UserButton
             afterSignOutUrl="/"
             appearance={{
