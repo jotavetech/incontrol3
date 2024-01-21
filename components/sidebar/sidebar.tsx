@@ -5,10 +5,13 @@ import { BarChart, Home, PiggyBank, Plus, Wallet } from "lucide-react";
 import SidebarNavButton from "./sidebar-nav-button";
 
 import { ModeToggle } from "../mode-toggle";
+
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 
 import useModal from "@/hooks/use-modal-store";
+
+import { UserButton } from "@clerk/nextjs";
 
 const Sidebar = () => {
   const { onOpen } = useModal();
@@ -40,9 +43,20 @@ const Sidebar = () => {
           Add Register
         </Button>
       </nav>
-      <div className="flex flex-col justify-center items-center w-full gap-2 text-sm absolute bottom-10 left-0">
+      <div className="flex flex-col justify-center items-center w-full gap-2 text-sm absolute bottom-10 left-0 px-5">
         <ModeToggle />
         <p>Toggle theme.</p>
+        <div className="w-full flex items-center pl-4 gap-4 mt-5 bg-[#050505] py-4 rounded-2xl">
+          <UserButton
+            afterSignOutUrl="/"
+            appearance={{
+              elements: {
+                avatarBox: "h-[38px] w-[38px]",
+              },
+            }}
+          />
+          <span className="text-base">Username</span>
+        </div>
       </div>
     </div>
   );
