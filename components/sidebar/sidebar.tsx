@@ -15,7 +15,7 @@ const Sidebar = () => {
   const { onOpen } = useModal();
 
   return (
-    <div className="flex flex-col items-center h-full w-full dark:bg-[#0d0e0f] bg-[#f5f5f5] px-5">
+    <div className="flex flex-col items-center h-full w-full dark:bg-[#0d0e0f] bg-[#fdfdfd] px-5 shadow-sm">
       <p className="capitalize text-xl font-semibold py-14">Welcome</p>
       <nav className="w-full flex flex-col gap-4">
         <SidebarNavButton link="home">
