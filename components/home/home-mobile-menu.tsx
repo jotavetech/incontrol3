@@ -8,7 +8,11 @@ import { Separator } from "../ui/separator";
 
 import { UserButton } from "@clerk/nextjs";
 
-const HomeMobileMenu = () => {
+import { currentUser } from "@/lib/current-user";
+
+const HomeMobileMenu = async () => {
+  const user = await currentUser();
+
   return (
     <Popover>
       <PopoverTrigger className="mr-4">
@@ -28,6 +32,7 @@ const HomeMobileMenu = () => {
               },
             }}
           />
+          {user!.name}
         </div>
       </PopoverContent>
     </Popover>

@@ -11,16 +11,12 @@ import { Button } from "../ui/button";
 
 import useModal from "@/hooks/use-modal-store";
 
-import { UserButton } from "@clerk/nextjs";
-
 const Sidebar = () => {
   const { onOpen } = useModal();
 
   return (
     <div className="flex flex-col items-center h-full w-full dark:bg-[#0d0e0f] bg-[#f5f5f5] px-5">
-      <p className="capitalize text-xl font-semibold py-14">
-        Hello, <span className="text-primary">Joao</span>
-      </p>
+      <p className="capitalize text-xl font-semibold py-14">Welcome</p>
       <nav className="w-full flex flex-col gap-4">
         <SidebarNavButton link="home">
           <Home className="w-5 h-5" /> Home
@@ -46,17 +42,6 @@ const Sidebar = () => {
       <div className="flex flex-col justify-center items-center w-full gap-2 text-sm absolute bottom-10 left-0 px-5">
         <ModeToggle />
         <p>Toggle theme.</p>
-        <div className="w-full flex items-center pl-4 gap-4 mt-5 bg-[#fefefe] dark:bg-[#050505] py-4 rounded-2xl">
-          <UserButton
-            afterSignOutUrl="/"
-            appearance={{
-              elements: {
-                avatarBox: "h-[38px] w-[38px]",
-              },
-            }}
-          />
-          <span className="text-base">Username</span>
-        </div>
       </div>
     </div>
   );
