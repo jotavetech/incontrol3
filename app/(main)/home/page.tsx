@@ -115,7 +115,6 @@ const HomePage = () => {
           </Carousel>
         </div>
         <div className="w-full lg:max-w-[1600px] mb-20">
-          <Separator className="mt-2" />
           <p className="pl-4 my-4 font-semibold text-base flex gap-2 items-center md:text-2xl md:my-8">
             Last Registers <BarChart3 className="w-4 h-4" />
           </p>

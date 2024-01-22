@@ -3,7 +3,9 @@ import { Menu } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 import { ModeToggle } from "../mode-toggle";
+
 import { Separator } from "../ui/separator";
+
 import { UserButton } from "@clerk/nextjs";
 
 const HomeMobileMenu = () => {
@@ -26,7 +28,6 @@ const HomeMobileMenu = () => {
               },
             }}
           />
-          Username
         </div>
       </PopoverContent>
     </Popover>
