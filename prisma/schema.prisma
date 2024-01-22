@@ -27,7 +27,7 @@ model Entrie {
   id          String         @id @default(uuid())
   name        String
   description String         @db.Text
-  amount      Float
+  amount      Decimal
   category    EntrieCategory @default(GENERAL)
 
   createdAt DateTime @default(now())
@@ -41,7 +41,7 @@ model Expense {
   id          String          @id @default(uuid())
   name        String
   description String          @db.Text
-  amount      Float
+  amount      Decimal
   category    ExpenseCategory @default(GENERAL)
 
   createdAt DateTime @default(now())
