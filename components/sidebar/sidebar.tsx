@@ -27,7 +27,7 @@ const Sidebar = () => {
         <SidebarNavButton link="expenses">
           <Wallet className="w-5 h-5" /> Expenses
         </SidebarNavButton>
-        <SidebarNavButton link="resume">
+        <SidebarNavButton link="resume/1">
           <BarChart className="w-5 h-5" /> Resume
         </SidebarNavButton>
         <Separator />
