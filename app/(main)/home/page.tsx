@@ -129,7 +129,7 @@ const HomePage = () => {
           </p>
           <div className="w-full flex flex-col md:flex-row gap-5">
             <div className="md:w-1/2">
-              <HomeRegisterCard items={itemsMock} type="entries" />
+              <HomeRegisterCard items={[]} type="entries" />
             </div>
             <div className="md:w-1/2">
               <HomeRegisterCard items={itemsMock} type="expenses" />

@@ -77,17 +77,18 @@ const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof registerFormSchema>) => {
+  const toastMessage = (name: string, amount: number) =>
     toast({
       "aria-label": "Register notification",
       title: `Register Created With Success!`,
-      description: `${values.name}: ${formatValue(values.amount)}`,
+      description: `${name}: ${formatValue(amount)}`,
       className:
         "dark:border-green-500 dark:bg-[#081700] dark:text-white bg-green-200 border-green-500 text-black rounded-xl",
-      duration: 1500,
-      // onClick: go to register
+      duration: 3000,
     });
 
+  const onSubmit = (values: z.infer<typeof registerFormSchema>) => {
+    toastMessage(values.name, values.amount);
     onClose();
   };
 

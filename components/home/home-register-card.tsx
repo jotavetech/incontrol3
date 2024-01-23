@@ -1,12 +1,16 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "../ui/separator";
 
-import { TrendingDown, TrendingUp } from "lucide-react";
+import { Plus, TrendingDown, TrendingUp } from "lucide-react";
 
 import { cn, formatValue } from "@/lib/utils";
 
 import Link from "next/link";
+
+import useModal from "@/hooks/use-modal-store";
 
 interface HomeRegisterCardProps {
   type: "expenses" | "entries";
@@ -19,6 +23,8 @@ interface HomeRegisterCardProps {
 }
 
 const HomeRegisterCard = ({ items, type }: HomeRegisterCardProps) => {
+  const { onOpen } = useModal();
+
   return (
     <Card className="rounded-none">
       <CardHeader className="py-3">
@@ -39,24 +45,31 @@ const HomeRegisterCard = ({ items, type }: HomeRegisterCardProps) => {
       </CardHeader>
       <Separator />
       <CardContent className="h-[300px] p-2 lg:h-[360px]">
-        <ScrollArea className="h-full ">
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className="flex w-full justify-around p-4 border mb-2 rounded-lg"
-            >
-              <p>{item.name}</p>
-              <p>{item.data}</p>
-              <p
-                className={cn(
-                  type === "entries" ? "text-green-500" : "text-red-400"
-                )}
+        <ScrollArea className="h-full">
+          <button
+            className="flex gap-2 w-full p-4 border mb-2 rounded-xl items-center text-sm font-medium bg-[#fdfdfd] dark:bg-transparent hover:opacity-75 transition-opacity"
+            onClick={() => onOpen("createRegister")}
+          >
+            <Plus /> ADD NEW REGISTER
+          </button>
+          {items.length > 0 &&
+            items.map((item) => (
+              <button
+                key={item.id}
+                className="flex w-full justify-around p-4 border mb-2 "
               >
-                {type === "entries" ? "+" : "-"}
-                {formatValue(item.amount)}
-              </p>
-            </div>
-          ))}
+                <p>{item.name}</p>
+                <p>{item.data}</p>
+                <p
+                  className={cn(
+                    type === "entries" ? "text-green-500" : "text-red-400"
+                  )}
+                >
+                  {type === "entries" ? "+" : "-"}
+                  {formatValue(item.amount)}
+                </p>
+              </button>
+            ))}
         </ScrollArea>
       </CardContent>
     </Card>
