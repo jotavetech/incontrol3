@@ -31,7 +31,7 @@ import useModal from "@/hooks/use-modal-store";
 
 import { EntrieCategory, ExpenseCategory } from "@prisma/client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface AddRegisterFormProps {
   type?: "entrie" | "expense";
@@ -58,12 +58,12 @@ const registerFormSchema = z.object({
 
 // TODO
 
-// - Remove mocks,
 // - Fix 0 on number input
 // - Go to register when click on notification
 
 const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
   const [registerType, setRegisterType] = useState(type || "");
+
   const { toast } = useToast();
 
   const { onClose } = useModal();
@@ -79,8 +79,6 @@ const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
       amount: 0,
     },
   });
-
-  useEffect(() => {}, [registerType]);
 
   const toastMessage = (name: string, amount: number) =>
     toast({
@@ -151,12 +149,12 @@ const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
                   onValueChange={(value) => {
                     setRegisterType(value);
                     form.setValue("type", value);
-                    form.setValue("category", "GENERAL");
+                    form.setValue("category", "");
                   }}
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0">
+                    <SelectTrigger className="focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0 capitalize">
                       <SelectValue placeholder="Select a register type" />
                     </SelectTrigger>
                   </FormControl>
@@ -181,31 +179,64 @@ const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
               </FormItem>
             )}
           />
-          {registerType && (
+          {registerType === "entrie" && (
             <FormField
               control={form.control}
               name="category"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="uppercase text-xs font-bolddark:text-secondary/70">
-                    Register Category
+                    Entry Category
                   </FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0">
-                        <SelectValue placeholder="Select a register category" />
+                      <SelectTrigger className="focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0 capitalize">
+                        <SelectValue placeholder="Select a entry category" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {registerType &&
-                        Object.values(
-                          registerType === "entrie"
-                            ? EntrieCategory
-                            : ExpenseCategory
-                        ).map((type) => (
+                        Object.values(EntrieCategory).map((type) => (
+                          <SelectItem
+                            key={type}
+                            value={type}
+                            className="capitalize"
+                          >
+                            {type.toLowerCase()}
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage className="text-xs md:text-base" />
+                </FormItem>
+              )}
+            />
+          )}
+
+          {registerType === "expense" && (
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="uppercase text-xs font-bolddark:text-secondary/70">
+                    Expense Category
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0 capitalize">
+                        <SelectValue placeholder="Select a expense category" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {registerType &&
+                        Object.values(ExpenseCategory).map((type) => (
                           <SelectItem
                             key={type}
                             value={type}
