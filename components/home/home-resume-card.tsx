@@ -25,7 +25,7 @@ interface HomeResumeCardProps {
 
 const HomeResumeCard = ({ mouth, entries, expenses }: HomeResumeCardProps) => {
   return (
-    <Card className="md:h-[250px] rounded-none">
+    <Card className="md:h-[250px] rounded-2xl">
       <CardHeader>
         <CardTitle className="text-lg md:text-2xl flex gap-2 items-center justify-between capitalize">
           {mouth} Resume <CircleDollarSign className="opacity-70" />

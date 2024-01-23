@@ -26,7 +26,7 @@ const HomeRegisterCard = ({ items, type }: HomeRegisterCardProps) => {
   const { onOpen } = useModal();
 
   return (
-    <Card className="rounded-none">
+    <Card className="rounded-2xl">
       <CardHeader className="py-3">
         <CardTitle className="text-lg md:text-xl justify-between flex gap-2 items-center">
           {type === "entries" ? "Entries" : "Expenses"}
@@ -56,7 +56,7 @@ const HomeRegisterCard = ({ items, type }: HomeRegisterCardProps) => {
             items.map((item) => (
               <button
                 key={item.id}
-                className="flex w-full justify-around p-4 border mb-2 "
+                className="flex w-full justify-around p-4 border mb-2 rounded-xl "
               >
                 <p>{item.name}</p>
                 <p>{item.data}</p>
