@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "../ui/separator";
 
@@ -44,14 +50,15 @@ const HomeRegisterCard = ({ items, type }: HomeRegisterCardProps) => {
         </CardTitle>
       </CardHeader>
       <Separator />
-      <CardContent className="h-[300px] p-2 lg:h-[360px]">
+      <CardContent className="h-[270px] p-2 lg:h-[320px]">
         <ScrollArea className="h-full">
-          <button
-            className="flex gap-2 w-full p-4 border mb-2 rounded-xl items-center text-sm font-medium bg-[#fdfdfd] dark:bg-transparent hover:opacity-75 transition-opacity"
-            onClick={() => onOpen("createRegister")}
-          >
-            <Plus /> ADD NEW REGISTER
-          </button>
+          {items.length <= 0 && (
+            <div className="w-full h-[250px] lg:h-[290px] flex items-center justify-center text-center p-2">
+              <p className="opacity-60 text-sm lg:text-lg">
+                You don't have any entry records yet, create one now!
+              </p>
+            </div>
+          )}
           {items.length > 0 &&
             items.map((item) => (
               <button
@@ -72,6 +79,15 @@ const HomeRegisterCard = ({ items, type }: HomeRegisterCardProps) => {
             ))}
         </ScrollArea>
       </CardContent>
+      <Separator />
+      <CardFooter
+        className="py-3 flex items-center justify-center bg-[#fdfdfd] dark:bg-[#0c0c0c] rounded-b-2xl cursor-pointer"
+        onClick={() => onOpen("createRegister")}
+      >
+        <button className="flex gap-2 w-full h-full items-center text-sm font-medium hover:opacity-65 transition-opacity">
+          <Plus /> ADD NEW REGISTER
+        </button>
+      </CardFooter>
     </Card>
   );
 };
