@@ -1,3 +1,5 @@
+"use client";
+
 import { z } from "zod";
 
 import { useForm } from "react-hook-form";
@@ -29,13 +31,13 @@ import { formatValue } from "@/lib/utils";
 
 import useModal from "@/hooks/use-modal-store";
 
-import { EntrieCategory, ExpenseCategory } from "@prisma/client";
+import { EntryCategory, ExpenseCategory } from "@prisma/client";
 
 import { useState } from "react";
 
-interface AddRegisterFormProps {
-  type?: "entrie" | "expense";
-}
+import axios from "axios";
+
+import { useRouter } from "next/navigation";
 
 const registerFormSchema = z.object({
   name: z.string().refine((value) => value.length >= 3 && value.length <= 20, {
@@ -61,12 +63,14 @@ const registerFormSchema = z.object({
 // - Fix 0 on number input
 // - Go to register when click on notification
 
-const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
-  const [registerType, setRegisterType] = useState(type || "");
+const AddRegisterForm = () => {
+  const [registerType, setRegisterType] = useState("");
 
   const { toast } = useToast();
 
   const { onClose } = useModal();
+
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(registerFormSchema),
@@ -83,16 +87,27 @@ const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
   const toastMessage = (name: string, amount: number) =>
     toast({
       "aria-label": "Register notification",
-      title: `Register Created With Success!`,
+      title: `${registerType} Created With Success!`,
       description: `${name}: ${formatValue(amount)}`,
       className:
-        "dark:border-green-500 dark:bg-[#081700] dark:text-white bg-green-200 border-green-500 text-black rounded-xl",
+        "dark:border-green-500 dark:bg-[#081700] dark:text-white bg-green-200 border-green-500 text-black rounded-xl capitalize",
       duration: 3000,
     });
 
-  const onSubmit = (values: z.infer<typeof registerFormSchema>) => {
-    toastMessage(values.category, values.amount);
-    onClose();
+  const onSubmit = async (values: z.infer<typeof registerFormSchema>) => {
+    const typePath = values.type === "entry" ? "entries" : "expenses";
+
+    try {
+      await axios.post(`/api/${typePath}`, values);
+
+      form.reset();
+      router.refresh();
+      onClose();
+
+      toastMessage(values.name, values.amount);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -160,11 +175,11 @@ const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
                   </FormControl>
                   <SelectContent>
                     <SelectItem
-                      key={"entrie"}
-                      value={"entrie"}
+                      key={"entry"}
+                      value={"entry"}
                       className="capitalize"
                     >
-                      Entrie
+                      Entry
                     </SelectItem>
                     <SelectItem
                       key={"expense"}
@@ -179,7 +194,7 @@ const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
               </FormItem>
             )}
           />
-          {registerType === "entrie" && (
+          {registerType === "entry" && (
             <FormField
               control={form.control}
               name="category"
@@ -199,7 +214,7 @@ const AddRegisterForm = ({ type }: AddRegisterFormProps) => {
                     </FormControl>
                     <SelectContent>
                       {registerType &&
-                        Object.values(EntrieCategory).map((type) => (
+                        Object.values(EntryCategory).map((type) => (
                           <SelectItem
                             key={type}
                             value={type}

@@ -1,6 +1,7 @@
 import HomeResumeCard from "@/components/home/home-resume-card";
 import HomeMonthStatus from "@/components/home/home-month-status";
 import HomeRegisterCard from "@/components/home/home-register-card";
+import HomeMobileMenu from "@/components/home/home-mobile-menu";
 
 import {
   Carousel,
@@ -13,7 +14,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 
 import { Star, BarChart3 } from "lucide-react";
-import HomeMobileMenu from "@/components/home/home-mobile-menu";
+
 import { UserButton } from "@clerk/nextjs";
 
 const resumeMock = [
@@ -31,51 +32,6 @@ const resumeMock = [
     expenses: 700,
     entries: 800,
     mouth: "November",
-  },
-];
-
-const itemsMock = [
-  {
-    id: "1",
-    name: "Example 1",
-    data: "01/20/2024",
-    amount: 2000,
-  },
-  {
-    id: "2",
-    name: "Example 2",
-    data: "01/20/2024",
-    amount: 2000,
-  },
-  {
-    id: "3",
-    name: "Example 3",
-    data: "01/20/2024",
-    amount: 2000,
-  },
-  {
-    id: "4",
-    name: "Example 4",
-    data: "01/20/2024",
-    amount: 2000,
-  },
-  {
-    id: "5",
-    name: "Example 5",
-    data: "01/20/2024",
-    amount: 2000,
-  },
-  {
-    id: "6",
-    name: "Example 6",
-    data: "01/20/2024",
-    amount: 2000,
-  },
-  {
-    id: "7",
-    name: "Example 7",
-    data: "01/20/2024",
-    amount: 2000,
   },
 ];
 
@@ -129,10 +85,10 @@ const HomePage = () => {
           </p>
           <div className="w-full flex flex-col md:flex-row gap-5">
             <div className="md:w-1/2">
-              <HomeRegisterCard items={[]} type="entries" />
+              <HomeRegisterCard type="entries" />
             </div>
             <div className="md:w-1/2">
-              <HomeRegisterCard items={itemsMock} type="expenses" />
+              <HomeRegisterCard type="expenses" />
             </div>
           </div>
         </div>

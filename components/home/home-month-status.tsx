@@ -23,7 +23,7 @@ const HomeMonthStatus = ({
   const isPositive = () => entriesValue > expensesValue;
 
   return (
-    <Card className="md:h-[250px] rounded-2xl">
+    <Card className="md:h-[250px] rounded-2xl shadow-sm">
       <CardHeader>
         <CardTitle className="text-lg md:text-2xl flex gap-2 items-center capitalize justify-between">
           Current Month Status

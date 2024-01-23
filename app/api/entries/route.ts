@@ -1,21 +1,27 @@
+import { currentUser } from "@/lib/current-user";
 import { db } from "@/lib/db";
+
 import { NextResponse } from "next/server";
 
+// VERIFICAR SE É UM ID VALIDO
 export async function POST(req: Request) {
   try {
-    const { userId, name, description, amount, category } = await req.json();
+    const { name, description, amount, category } = await req.json();
+    const user = await currentUser();
 
     if (!name || !description || !amount || !category) {
       return new NextResponse("Missing fields", { status: 500 });
     }
 
-    if (!userId) {
-      return new NextResponse("Unauthorized, Missing ID", { status: 401 });
+    if (!user) {
+      return new NextResponse("Unauthorized, Missing User Information", {
+        status: 401,
+      });
     }
 
-    const entrie = await db.entrie.create({
+    const entry = await db.entry.create({
       data: {
-        userId,
+        userId: user.id,
         name,
         description,
         amount,
@@ -23,9 +29,35 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ entrie });
+    return NextResponse.json({ entry });
   } catch (error) {
     console.log("[ENTRIES_POST]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}
+
+export async function GET(req: Request) {
+  try {
+    const user = await currentUser();
+
+    if (!user) {
+      return new NextResponse("Unauthorized, Missing User", {
+        status: 401,
+      });
+    }
+
+    const entries = await db.entry.findMany({
+      where: {
+        userId: user.id,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return NextResponse.json({ entries });
+  } catch (error) {
+    console.log("[ENTRIES_GET]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

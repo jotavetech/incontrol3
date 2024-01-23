@@ -19,16 +19,16 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  entries  Entrie[]
-  Expenses Expense[]
+  entries  Entry[]
+  expenses Expense[]
 }
 
-model Entrie {
-  id          String         @id @default(uuid())
+model Entry {
+  id          String        @id @default(uuid())
   name        String
-  description String         @db.Text
-  amount      Decimal
-  category    EntrieCategory @default(GENERAL)
+  description String        @db.Text
+  amount      Float
+  category    EntryCategory @default(GENERAL)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -41,7 +41,7 @@ model Expense {
   id          String          @id @default(uuid())
   name        String
   description String          @db.Text
-  amount      Decimal
+  amount      Float
   category    ExpenseCategory @default(GENERAL)
 
   createdAt DateTime @default(now())
@@ -51,7 +51,7 @@ model Expense {
   userId String
 }
 
-enum EntrieCategory {
+enum EntryCategory {
   INCOMES
   INVESTMENTS
   BUSINESS
