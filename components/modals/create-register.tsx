@@ -43,9 +43,8 @@ const CreateRegister = () => {
           <DrawerTitle>Add New Register</DrawerTitle>
           <DrawerDescription>Keep tracking your finances</DrawerDescription>
         </DrawerHeader>
-        <DrawerFooter>
-          <AddRegisterForm />
-        </DrawerFooter>
+        <AddRegisterForm />
+        <DrawerFooter></DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
