@@ -292,10 +292,10 @@ const AddRegisterForm = () => {
               </FormItem>
             )}
           />
+          <Button variant="default" className="w-full mt-2" type="submit">
+            Create
+          </Button>
         </div>
-        <Button variant="default" className="w-full mt-2" type="submit">
-          Create
-        </Button>
       </form>
     </Form>
   );
