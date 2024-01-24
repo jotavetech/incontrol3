@@ -7,8 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "../ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 import { Plus, TrendingDown, TrendingUp } from "lucide-react";
 

@@ -65,6 +65,7 @@ const registerFormSchema = z.object({
 
 const AddRegisterForm = () => {
   const [registerType, setRegisterType] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { toast } = useToast();
 
@@ -98,6 +99,7 @@ const AddRegisterForm = () => {
     const typePath = values.type === "entry" ? "entries" : "expenses";
 
     try {
+      setLoading(true);
       await axios.post(`/api/${typePath}`, values);
 
       form.reset();
@@ -107,6 +109,8 @@ const AddRegisterForm = () => {
       toastMessage(values.name, values.amount);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -292,7 +296,12 @@ const AddRegisterForm = () => {
               </FormItem>
             )}
           />
-          <Button variant="default" className="w-full mt-2" type="submit">
+          <Button
+            variant="default"
+            className="w-full mt-2"
+            type="submit"
+            disabled={loading}
+          >
             Create
           </Button>
         </div>
