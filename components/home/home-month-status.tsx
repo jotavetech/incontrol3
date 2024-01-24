@@ -20,7 +20,8 @@ const HomeMonthStatus = ({
   entriesValue,
   expensesValue,
 }: HomeMonthStatusProps) => {
-  const isPositive = () => entriesValue > expensesValue;
+  const isPositive = entriesValue > expensesValue;
+  const isZero = !entriesValue && !expensesValue;
 
   return (
     <Card className="md:h-[250px] rounded-2xl shadow-sm">
@@ -37,10 +38,11 @@ const HomeMonthStatus = ({
         <p
           className={cn(
             `text-red-500 flex items-center text-2xl`,
-            isPositive() && "text-green-400"
+            isPositive && "text-green-400",
+            isZero && "text-zinc-400"
           )}
         >
-          {isPositive() && <Plus className="w-4 h-4" />}
+          {isPositive && <Plus className="w-4 h-4" />}
           {formatValue(entriesValue - expensesValue)}
         </p>
       </CardContent>

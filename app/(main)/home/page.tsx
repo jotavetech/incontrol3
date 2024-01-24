@@ -17,6 +17,12 @@ import { Star, BarChart3 } from "lucide-react";
 
 import { UserButton } from "@clerk/nextjs";
 
+import { currentUser } from "@/lib/current-user";
+
+import { redirect } from "next/navigation";
+
+import { db } from "@/lib/db";
+
 const resumeMock = [
   {
     expenses: 200,
@@ -35,7 +41,41 @@ const resumeMock = [
   },
 ];
 
-const HomePage = () => {
+const HomePage = async () => {
+  const user = await currentUser();
+
+  if (!user) return redirect("/sign-in");
+
+  const entries = await db.entry.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  const expenses = await db.expense.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  const getTotal = (type: "expense" | "entry") => {
+    if (type === "expense") {
+      return expenses.reduce((ac, curr) => ac + curr.amount, 0);
+    }
+
+    if (type === "entry") {
+      return entries.reduce((ac, curr) => ac + curr.amount, 0);
+    }
+
+    return 0;
+  };
+
   return (
     <div>
       <div className="flex w-full lg:max-w-[1600px]  justify-between items-center">
@@ -61,7 +101,10 @@ const HomePage = () => {
             Hello, its good to see you! <Star className="w-4 h-4" />
           </p>
           <div className="md:w-1/2">
-            <HomeMonthStatus entriesValue={800} expensesValue={400} />
+            <HomeMonthStatus
+              entriesValue={getTotal("entry")}
+              expensesValue={getTotal("expense")}
+            />
           </div>
           <Carousel className="md:w-1/2">
             <CarouselContent>
@@ -85,10 +128,10 @@ const HomePage = () => {
           </p>
           <div className="w-full flex flex-col md:flex-row gap-5">
             <div className="md:w-1/2">
-              <HomeRegisterCard type="entries" />
+              <HomeRegisterCard type="entries" registers={entries} />
             </div>
             <div className="md:w-1/2">
-              <HomeRegisterCard type="expenses" />
+              <HomeRegisterCard type="expenses" registers={expenses} />
             </div>
           </div>
         </div>
