@@ -8,6 +8,8 @@ import ModalProvider from "@/components/providers/modal-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
+import { Analytics } from "@vercel/analytics/react";
+
 import { ClerkProvider } from "@clerk/nextjs";
 
 import "./globals.css";
@@ -35,6 +37,7 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ModalProvider />
             {children}
+            <Analytics />
             <Toaster />
           </ThemeProvider>
         </body>
