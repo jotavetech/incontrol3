@@ -82,7 +82,12 @@ const RegisterDetails = () => {
             </span>
           </div>
           <DialogFooter className="w-full flex">
-            <Button className="w-1/2" variant={"outline"}>
+            <Button
+              className="w-1/2"
+              variant={"outline"}
+              onClick={handleClose}
+              aria-label="Close register details"
+            >
               Close
             </Button>
             <Button className="w-1/2" variant={"secondary"}>
@@ -124,7 +129,13 @@ const RegisterDetails = () => {
           </div>
         </div>
         <DrawerFooter className="flex">
-          <Button variant={"outline"}>Close</Button>
+          <Button
+            variant={"outline"}
+            onClick={handleClose}
+            aria-label="Close register details"
+          >
+            Close
+          </Button>
           <Button variant={"secondary"}>Go to {data.type}</Button>
         </DrawerFooter>
       </DrawerContent>
