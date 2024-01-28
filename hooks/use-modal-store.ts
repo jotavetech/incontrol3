@@ -1,13 +1,18 @@
 import { create } from "zustand";
 
-export type ModalType = "createRegister" | "editRegister" | "deleteRegister";
+export type ModalType =
+  | "createRegister"
+  | "editRegister"
+  | "deleteRegister"
+  | "registerDetails";
 
 // remove later
 interface ModalData {
   id?: string;
+  name?: string;
   description?: string;
   createdAt?: Date;
-  status?: string;
+  category?: string;
   type?: string;
   amount?: number;
 }

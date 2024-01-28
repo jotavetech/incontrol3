@@ -117,7 +117,7 @@ const AddRegisterForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-2 px-4">
+        <div className="flex flex-col gap-2">
           <FormField
             control={form.control}
             name="name"

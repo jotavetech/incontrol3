@@ -1,3 +1,5 @@
+import useModal from "@/hooks/use-modal-store";
+
 import { cn, formatValue } from "@/lib/utils";
 
 import { Entry, Expense } from "@prisma/client";
@@ -8,6 +10,8 @@ interface HomeRegisterItemsTypeProps {
 }
 
 const HomeRegisterItems = ({ type, registers }: HomeRegisterItemsTypeProps) => {
+  const { onOpen } = useModal();
+
   return (
     <>
       {registers.length <= 0 && (
@@ -22,6 +26,7 @@ const HomeRegisterItems = ({ type, registers }: HomeRegisterItemsTypeProps) => {
           <button
             key={register.id}
             className="flex w-full justify-around p-4 border mb-2 rounded-xl"
+            onClick={() => onOpen("registerDetails", { ...register, type })}
           >
             <p>{register.name}</p>
             <p>{}</p>
