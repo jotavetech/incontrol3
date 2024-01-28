@@ -62,17 +62,24 @@ const RegisterDetails = () => {
             <DialogTitle>Details</DialogTitle>
             <DialogDescription>See more details.</DialogDescription>
           </DialogHeader>
-
           <Separator />
-          <div>
-            <p className="capitalize font-medium text-xl">{data.name}</p>
-            <p className="mt-2">{data.description}</p>
-            <div className="mt-5 flex justify-between">
-              <p className="font-bold">{data.category}</p>
-              <span className="text-zinc-500">
-                {data.createdAt?.getFullYear()}
-              </span>
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col">
+              <span className="font-bold text-zinc-500">NAME:</span>
+              <p className="capitalize text-base">{data.name}</p>
             </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-zinc-500">DESCRIPTION:</span>
+              <p className="capitalize text-base break-words">
+                {data.description}
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 flex justify-between">
+            <p className="font-bold">{data.category}</p>
+            <span className="text-zinc-500">
+              {data.createdAt?.getFullYear()}
+            </span>
           </div>
           <DialogFooter className="w-full flex">
             <Button className="w-1/2" variant={"outline"}>
@@ -94,11 +101,20 @@ const RegisterDetails = () => {
           <DrawerTitle>Details</DrawerTitle>
           <DrawerDescription>See more details.</DrawerDescription>
         </DrawerHeader>
-        <Separator />
-        <div className="px-4 pt-4">
-          <div>
-            <p className="capitalize font-medium text-xl">{data.name}</p>
-            <p className="mt-2">{data.description}</p>
+        <div className="px-4">
+          <Separator className="my-4" />
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col">
+              <span className="font-bold text-zinc-500">NAME:</span>
+              <p className="capitalize text-base">{data.name}</p>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-zinc-500">DESCRIPTION:</span>
+              <p className="capitalize text-base break-words">
+                {data.description}
+              </p>
+            </div>
+
             <div className="mt-5 flex justify-between">
               <p className="font-bold">{data.category}</p>
               <span className="text-zinc-500">
