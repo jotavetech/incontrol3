@@ -1,3 +1,5 @@
+"use client";
+
 import { Entry, EntryCategory, Expense, ExpenseCategory } from "@prisma/client";
 
 import {
@@ -13,7 +15,10 @@ import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
 
 import { cn, formatValue } from "@/lib/utils";
+
 import RegisterItem from "./register-item";
+
+import { useEffect, useState } from "react";
 
 interface RegistersTable {
   type: "entries" | "expenses";
@@ -22,7 +27,24 @@ interface RegistersTable {
 }
 
 const RegistersTable = ({ type, registers, total }: RegistersTable) => {
+  const [tags, setTags] = useState<string[]>([]);
+
   const categories = type === "entries" ? EntryCategory : ExpenseCategory;
+
+  const tagExistsOnState = (tag: string) => tags.find((atual) => atual === tag);
+
+  const handleTags = (tag: string) => {
+    if (tagExistsOnState(tag)) {
+      const remainingTags = tags.filter((atual) => atual !== tag);
+      return setTags(remainingTags);
+    }
+
+    setTags((prev) => [...prev, tag]);
+  };
+
+  useEffect(() => {
+    console.log(tags);
+  }, [tags]);
 
   return (
     <div className="w-full">
@@ -44,9 +66,28 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
       <div className="mt-4">
         <div className="px-1 flex flex-wrap gap-2">
           <p>Tags: </p>
-          <Badge variant={"outline"}>This Month</Badge>
+          <Badge
+            variant={"outline"}
+            onClick={() => handleTags("THIS_MONTH")}
+            className={cn(
+              "capitalize cursor-pointer",
+              tagExistsOnState("THIS_MONTH") &&
+                "bg-black text-white border-black dark:bg-white dark:text-black"
+            )}
+          >
+            This Month
+          </Badge>
           {Object.values(categories).map((category) => (
-            <Badge key={category} variant={"outline"} className="capitalize">
+            <Badge
+              key={category}
+              variant={"outline"}
+              className={cn(
+                "capitalize cursor-pointer",
+                tagExistsOnState(category) &&
+                  "bg-black text-white border-black dark:bg-white dark:text-black"
+              )}
+              onClick={() => handleTags(category)}
+            >
               {category.toLowerCase()}
             </Badge>
           ))}
