@@ -37,7 +37,7 @@ const HomeMonthStatus = ({
       <CardContent>
         <p
           className={cn(
-            `text-red-500 flex items-center text-2xl`,
+            `text-red-400 flex items-center text-2xl`,
             isPositive && "text-green-400",
             isZero && "text-zinc-400"
           )}

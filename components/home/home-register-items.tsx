@@ -32,7 +32,7 @@ const HomeRegisterItems = ({ type, registers }: HomeRegisterItemsTypeProps) => {
             <p>{}</p>
             <p
               className={cn(
-                type === "entries" ? "text-green-500" : "text-red-400"
+                type === "entries" ? "text-green-400" : "text-red-400"
               )}
             >
               {type === "entries" ? "+" : "-"}
