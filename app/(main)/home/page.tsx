@@ -106,21 +106,21 @@ const HomePage = async () => {
               expensesValue={getTotal("expense")}
             />
           </div>
-          <Carousel className="md:w-1/2">
-            <CarouselContent>
+          <div className="md:w-1/2">
+            {/* <CarouselContent>
               {resumeMock.map((resume) => (
-                <CarouselItem key={resume.expenses} className="cursor-pointer">
-                  <HomeResumeCard
-                    expenses={resume.expenses}
-                    entries={resume.entries}
-                    mouth={resume.mouth}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselNext className="hidden md:flex right-4 opacity-20 hover:opacity-100" />
+                <CarouselItem key={resume.expenses} className="cursor-pointer"> */}
+            <HomeResumeCard
+              expenses={getTotal("expense")}
+              entries={getTotal("entry")}
+              mouth={"January"}
+            />
+            {/* </CarouselItem>
+              ))} */}
+          </div>
+          {/* <CarouselNext className="hidden md:flex right-4 opacity-20 hover:opacity-100" />
             <CarouselPrevious className="hidden md:flex left-4 opacity-20 hover:opacity-100" />
-          </Carousel>
+          </Carousel> */}
         </div>
         <div className="w-full lg:max-w-[1600px] mb-20">
           <p className="pl-4 my-4 font-semibold text-base flex gap-2 items-center md:text-2xl md:my-8">
