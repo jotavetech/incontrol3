@@ -4,12 +4,15 @@ import useModal from "@/hooks/use-modal-store";
 
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
+
+import { Button } from "../ui/button";
 
 import AddRegisterForm from "../forms/add-register-form";
 
@@ -44,7 +47,13 @@ const CreateRegister = () => {
           <DrawerDescription>Keep tracking your finances</DrawerDescription>
         </DrawerHeader>
         <AddRegisterForm />
-        <DrawerFooter></DrawerFooter>
+        <DrawerFooter>
+          <DrawerClose onClick={handleClose}>
+            <Button variant="outline" className="w-full">
+              Cancel
+            </Button>
+          </DrawerClose>
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
