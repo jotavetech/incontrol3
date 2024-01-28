@@ -13,6 +13,7 @@ import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
 
 import { cn, formatValue } from "@/lib/utils";
+import RegisterItem from "./register-item";
 
 interface RegistersTable {
   type: "entries" | "expenses";
@@ -51,36 +52,7 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
           ))}
         </div>
       </div>
-      <ScrollArea className="mt-3 max-h-[400px]">
-        {registers.map((register) => (
-          <div
-            key={register.id}
-            className="py-2 px-4 bg-[#f8f8f8] dark:bg-[#0c0c0c] shadow-sm rounded-xl mb-2 flex items-center h-[70px]"
-          >
-            <div className="w-1/2">
-              <p className="Capitalize">{register.name}</p>
-              <span className="text-xs text-zinc-400 break-words">
-                {register.category}
-              </span>
-            </div>
-            <div className="w-1/2 flex items-end flex-col">
-              <p className="text-xs text-zinc-400">Total</p>
-              <p
-                className={cn(
-                  "text-green-400 text-[12px]",
-                  type === "expenses" && "text-red-400"
-                )}
-              >
-                +{formatValue(register.amount)}
-              </p>
-              <span className="text-xs text-zinc-400 break-words">
-                {register.updatedAt.getFullYear()}
-              </span>
-            </div>
-          </div>
-        ))}
-      </ScrollArea>
-      <p className="px-2">
+      <p className="px-1 mt-4">
         Total:{" "}
         <span
           className={cn(
@@ -92,6 +64,11 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
           {formatValue(total)}
         </span>
       </p>
+      <ScrollArea className="mt-3 h-[400px] md:h-[600px] lg:h-[650px] md:border md:p-2 md:rounded-xl mb-20 md:mb-0">
+        {registers.map((register) => (
+          <RegisterItem key={register.id} register={register} type={type} />
+        ))}
+      </ScrollArea>
     </div>
   );
 };
