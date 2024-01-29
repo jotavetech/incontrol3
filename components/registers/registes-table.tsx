@@ -20,14 +20,27 @@ import RegisterItem from "./register-item";
 
 import { useEffect, useState } from "react";
 
+type Register = {
+  id: string;
+  name: string;
+  description: string;
+  amount: number;
+  category: EntryCategory | ExpenseCategory;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: string;
+};
+
 interface RegistersTable {
   type: "entries" | "expenses";
-  registers: Entry[] | Expense[];
+  registers: Register[];
   total: number;
 }
 
 const RegistersTable = ({ type, registers, total }: RegistersTable) => {
+  const [searchInput, setSearchInput] = useState("");
   const [tags, setTags] = useState<string[]>([]);
+  const [filteredRegisters, setFilteredRegisters] = useState<Register[]>([]);
 
   const categories = type === "entries" ? EntryCategory : ExpenseCategory;
 
@@ -43,13 +56,36 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
   };
 
   useEffect(() => {
-    console.log(tags);
-  }, [tags]);
+    handleFilteredRegisters();
+  }, [tags, searchInput]);
+
+  const handleFilteredRegisters = () => {
+    let newFilteredRegisters: Register[] = [];
+
+    if (tags.length)
+      newFilteredRegisters = registers.filter((register) =>
+        tags.includes(register.category)
+      );
+
+    if (searchInput)
+      newFilteredRegisters = registers.filter(
+        (register) =>
+          register.name.toLowerCase().includes(searchInput) ||
+          register.amount.toString().includes(searchInput)
+      );
+
+    setFilteredRegisters(newFilteredRegisters);
+  };
 
   return (
     <div className="w-full">
       <div className="flex gap-2 mt-4">
-        <Input placeholder="Search by..." className="rounded-xl" />
+        <Input
+          placeholder="Search by..."
+          className="rounded-xl"
+          value={searchInput}
+          onChange={({ target }) => setSearchInput(target.value)}
+        />
         <Select>
           <SelectTrigger className="w-[180px] rounded-xl">
             <SelectValue placeholder="Order by" />
@@ -106,9 +142,14 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
         </span>
       </p>
       <ScrollArea className="mt-3 h-[400px] md:h-[600px] lg:h-[650px] md:border md:p-2 md:rounded-xl mb-20 md:mb-0">
-        {registers.map((register) => (
-          <RegisterItem key={register.id} register={register} type={type} />
-        ))}
+        {!filteredRegisters.length &&
+          registers.map((register) => (
+            <RegisterItem key={register.id} register={register} type={type} />
+          ))}
+        {filteredRegisters.length > 0 &&
+          filteredRegisters.map((register) => (
+            <RegisterItem key={register.id} register={register} type={type} />
+          ))}
       </ScrollArea>
     </div>
   );
