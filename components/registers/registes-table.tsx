@@ -39,7 +39,7 @@ interface RegistersTable {
 
 const RegistersTable = ({ type, registers, total }: RegistersTable) => {
   const [searchInput, setSearchInput] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>(["THIS_MONTH"]);
   const [filteredRegisters, setFilteredRegisters] = useState<Register[]>([]);
 
   const categories = type === "entries" ? EntryCategory : ExpenseCategory;
@@ -70,7 +70,7 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
     if (searchInput)
       newFilteredRegisters = registers.filter(
         (register) =>
-          register.name.toLowerCase().includes(searchInput) ||
+          register.name.toLowerCase().includes(searchInput.toLowerCase()) ||
           register.amount.toString().includes(searchInput)
       );
 

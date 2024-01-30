@@ -15,11 +15,14 @@ interface SidebarNavButtonProps {
 
 const SidebarNavButton = ({ link, children }: SidebarNavButtonProps) => {
   return (
-    <Button variant={"primary"} className={cn("w-full")}>
-      <Link href={`/${link}`} className="flex justify-start gap-2 w-full">
+    <Link href={`/${link}`} className="w-full">
+      <Button
+        variant={"primary"}
+        className={cn("w-full flex justify-start gap-2 ")}
+      >
         {children}
-      </Link>
-    </Button>
+      </Button>
+    </Link>
   );
 };
 
