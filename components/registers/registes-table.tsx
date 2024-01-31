@@ -39,8 +39,15 @@ interface RegistersTable {
 
 const RegistersTable = ({ type, registers, total }: RegistersTable) => {
   const [searchInput, setSearchInput] = useState("");
-  const [tags, setTags] = useState<string[]>(["THIS_MONTH"]);
-  const [filteredRegisters, setFilteredRegisters] = useState<Register[]>([]);
+  const [searchIsDisabled, setSearchIsDisabled] = useState(false);
+
+  const [tags, setTags] = useState<string[]>([]);
+
+  const [filteredByTagsRegisters, setFilteredByTagsRegisters] = useState<
+    Register[]
+  >([]);
+  const [filteredBySearchRegisters, setFilteredBySearchRegisters] =
+    useState<Register[]>(registers);
 
   const categories = type === "entries" ? EntryCategory : ExpenseCategory;
 
@@ -56,25 +63,41 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
   };
 
   useEffect(() => {
-    handleFilteredRegisters();
+    handleFilterByTags();
+    handleFilterBySearch();
   }, [tags, searchInput]);
 
-  const handleFilteredRegisters = () => {
-    let newFilteredRegisters: Register[] = [];
+  const handleFilterByTags = () => {
+    if (tags.length) {
+      setSearchInput("");
+      setSearchIsDisabled(true);
 
-    if (tags.length)
-      newFilteredRegisters = registers.filter((register) =>
+      const filteredByTags = registers.filter((register) =>
         tags.includes(register.category)
       );
 
-    if (searchInput)
-      newFilteredRegisters = registers.filter(
+      setFilteredByTagsRegisters(filteredByTags);
+
+      return;
+    }
+
+    setSearchIsDisabled(false);
+    setFilteredByTagsRegisters([]);
+  };
+
+  const handleFilterBySearch = () => {
+    if (searchInput) {
+      const filteredBySearch = registers.filter(
         (register) =>
           register.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-          register.amount.toString().includes(searchInput)
+          register.amount.toString().includes(searchInput.toLowerCase())
       );
 
-    setFilteredRegisters(newFilteredRegisters);
+      setFilteredBySearchRegisters(filteredBySearch);
+      return;
+    }
+
+    setFilteredBySearchRegisters(registers);
   };
 
   return (
@@ -84,6 +107,7 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
           placeholder="Search by..."
           className="rounded-xl"
           value={searchInput}
+          disabled={searchIsDisabled}
           onChange={({ target }) => setSearchInput(target.value)}
         />
         <Select>
@@ -101,32 +125,36 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
       </div>
       <div className="mt-4">
         <div className="px-1 flex flex-wrap gap-2">
-          <p>Tags: </p>
-          <Badge
-            variant={"outline"}
-            onClick={() => handleTags("THIS_MONTH")}
-            className={cn(
-              "capitalize cursor-pointer",
-              tagExistsOnState("THIS_MONTH") &&
-                "bg-black text-white border-black dark:bg-white dark:text-black"
-            )}
-          >
-            This Month
-          </Badge>
-          {Object.values(categories).map((category) => (
-            <Badge
-              key={category}
-              variant={"outline"}
-              className={cn(
-                "capitalize cursor-pointer",
-                tagExistsOnState(category) &&
-                  "bg-black text-white border-black dark:bg-white dark:text-black"
-              )}
-              onClick={() => handleTags(category)}
-            >
-              {category.toLowerCase()}
-            </Badge>
-          ))}
+          {!searchInput && (
+            <>
+              <p>Tags: </p>
+              <Badge
+                variant={"outline"}
+                onClick={() => handleTags("THIS_MONTH")}
+                className={cn(
+                  "capitalize cursor-pointer",
+                  tagExistsOnState("THIS_MONTH") &&
+                    "bg-black text-white border-black dark:bg-white dark:text-black"
+                )}
+              >
+                This Month
+              </Badge>
+              {Object.values(categories).map((category) => (
+                <Badge
+                  key={category}
+                  variant={"outline"}
+                  className={cn(
+                    "capitalize cursor-pointer",
+                    tagExistsOnState(category) &&
+                      "bg-black text-white border-black dark:bg-white dark:text-black"
+                  )}
+                  onClick={() => handleTags(category)}
+                >
+                  {category.toLowerCase()}
+                </Badge>
+              ))}
+            </>
+          )}
         </div>
       </div>
       <p className="px-1 mt-4">
@@ -142,14 +170,14 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
         </span>
       </p>
       <ScrollArea className="mt-3 h-[400px] md:h-[600px] lg:h-[650px] md:border md:p-2 md:rounded-xl mb-20 md:mb-0">
-        {!filteredRegisters.length &&
-          registers.map((register) => (
-            <RegisterItem key={register.id} register={register} type={type} />
-          ))}
-        {filteredRegisters.length > 0 &&
-          filteredRegisters.map((register) => (
-            <RegisterItem key={register.id} register={register} type={type} />
-          ))}
+        {filteredByTagsRegisters.length
+          ? filteredByTagsRegisters.map((register) => (
+              <RegisterItem key={register.id} register={register} type={type} />
+            ))
+          : filteredBySearchRegisters.length &&
+            filteredBySearchRegisters.map((register) => (
+              <RegisterItem key={register.id} register={register} type={type} />
+            ))}
       </ScrollArea>
     </div>
   );
