@@ -1,6 +1,6 @@
 "use client";
 
-import { Entry, EntryCategory, Expense, ExpenseCategory } from "@prisma/client";
+import { EntryCategory, ExpenseCategory } from "@prisma/client";
 
 import {
   Select,
@@ -37,16 +37,20 @@ interface RegistersTable {
   total: number;
 }
 
+type OrderByProps =
+  | "amountAsc"
+  | "amountDesc"
+  | "createdAtAsc"
+  | "createdAtDesc";
+
 const RegistersTable = ({ type, registers, total }: RegistersTable) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchIsDisabled, setSearchIsDisabled] = useState(false);
 
   const [tags, setTags] = useState<string[]>([]);
+  const [orderBy, setOrderBy] = useState<OrderByProps>("createdAtDesc");
 
-  const [filteredByTagsRegisters, setFilteredByTagsRegisters] = useState<
-    Register[]
-  >([]);
-  const [filteredBySearchRegisters, setFilteredBySearchRegisters] =
+  const [orderByRegisters, setOrderByRegisters] =
     useState<Register[]>(registers);
 
   const categories = type === "entries" ? EntryCategory : ExpenseCategory;
@@ -63,11 +67,6 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
   };
 
   useEffect(() => {
-    handleFilterByTags();
-    handleFilterBySearch();
-  }, [tags, searchInput]);
-
-  const handleFilterByTags = () => {
     if (tags.length) {
       setSearchInput("");
       setSearchIsDisabled(true);
@@ -76,16 +75,9 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
         tags.includes(register.category)
       );
 
-      setFilteredByTagsRegisters(filteredByTags);
-
-      return;
+      return handleOrderByRegisters(filteredByTags);
     }
 
-    setSearchIsDisabled(false);
-    setFilteredByTagsRegisters([]);
-  };
-
-  const handleFilterBySearch = () => {
     if (searchInput) {
       const filteredBySearch = registers.filter(
         (register) =>
@@ -93,11 +85,17 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
           register.amount.toString().includes(searchInput.toLowerCase())
       );
 
-      setFilteredBySearchRegisters(filteredBySearch);
-      return;
+      return handleOrderByRegisters(filteredBySearch);
     }
 
-    setFilteredBySearchRegisters(registers);
+    setSearchIsDisabled(false);
+    handleOrderByRegisters();
+  }, [tags, searchInput]);
+
+  const handleOrderByRegisters = (atualRegisters?: Register[]) => {
+    if (atualRegisters) return setOrderByRegisters(atualRegisters);
+
+    setOrderByRegisters(registers);
   };
 
   return (
@@ -110,16 +108,20 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
           disabled={searchIsDisabled}
           onChange={({ target }) => setSearchInput(target.value)}
         />
-        <Select>
+        <Select
+          value={orderBy}
+          onValueChange={(value) => setOrderBy(value as OrderByProps)}
+        >
           <SelectTrigger className="w-[180px] rounded-xl">
             <SelectValue placeholder="Order by" />
           </SelectTrigger>
           <SelectContent className="rounded-xl">
-            <SelectItem value="asc">(Amount) Ascending</SelectItem>
-            <SelectItem value="desc">(Amount) Descending</SelectItem>
-            <SelectItem value="asc">(Created At) Ascending</SelectItem>
-            <SelectItem value="desc">(Created At) Descending</SelectItem>
-            <SelectItem value="default">No Order</SelectItem>
+            <SelectItem value="amountAsc">(Amount) Ascending</SelectItem>
+            <SelectItem value="amountDesc">(Amount) Descending</SelectItem>
+            <SelectItem value="createdAtAsc">(Created At) Ascending</SelectItem>
+            <SelectItem value="createdAtDesc">
+              (Created At) Descending
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -170,14 +172,13 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
         </span>
       </p>
       <ScrollArea className="mt-3 h-[400px] md:h-[600px] lg:h-[650px] md:border md:p-2 md:rounded-xl mb-20 md:mb-0">
-        {filteredByTagsRegisters.length
-          ? filteredByTagsRegisters.map((register) => (
-              <RegisterItem key={register.id} register={register} type={type} />
-            ))
-          : filteredBySearchRegisters.length &&
-            filteredBySearchRegisters.map((register) => (
-              <RegisterItem key={register.id} register={register} type={type} />
-            ))}
+        {orderByRegisters.length ? (
+          orderByRegisters.map((register) => (
+            <RegisterItem key={register.id} register={register} type={type} />
+          ))
+        ) : (
+          <div>poxa, nada encontrado :(</div>
+        )}
       </ScrollArea>
     </div>
   );

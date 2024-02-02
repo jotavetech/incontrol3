@@ -33,7 +33,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn(fontSans.className)}>
+        <body
+          className={cn(fontSans.className)}
+          suppressHydrationWarning={true}
+        >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ModalProvider />
             {children}
