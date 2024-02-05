@@ -19,6 +19,7 @@ import { cn, formatValue } from "@/lib/utils";
 import RegisterItem from "./register-item";
 
 import { useEffect, useState } from "react";
+import RegistersList from "./registers-list";
 
 type Register = {
   id: string;
@@ -50,9 +51,6 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
   const [tags, setTags] = useState<string[]>([]);
   const [orderBy, setOrderBy] = useState<OrderByProps>("createdAtDesc");
 
-  const [orderByRegisters, setOrderByRegisters] =
-    useState<Register[]>(registers);
-
   const categories = type === "entries" ? EntryCategory : ExpenseCategory;
 
   const tagExistsOnState = (tag: string) => tags.find((atual) => atual === tag);
@@ -64,38 +62,6 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
     }
 
     setTags((prev) => [...prev, tag]);
-  };
-
-  useEffect(() => {
-    if (tags.length) {
-      setSearchInput("");
-      setSearchIsDisabled(true);
-
-      const filteredByTags = registers.filter((register) =>
-        tags.includes(register.category)
-      );
-
-      return handleOrderByRegisters(filteredByTags);
-    }
-
-    if (searchInput) {
-      const filteredBySearch = registers.filter(
-        (register) =>
-          register.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-          register.amount.toString().includes(searchInput.toLowerCase())
-      );
-
-      return handleOrderByRegisters(filteredBySearch);
-    }
-
-    setSearchIsDisabled(false);
-    handleOrderByRegisters();
-  }, [tags, searchInput]);
-
-  const handleOrderByRegisters = (atualRegisters?: Register[]) => {
-    if (atualRegisters) return setOrderByRegisters(atualRegisters);
-
-    setOrderByRegisters(registers);
   };
 
   return (
@@ -159,27 +125,13 @@ const RegistersTable = ({ type, registers, total }: RegistersTable) => {
           )}
         </div>
       </div>
-      <p className="px-1 mt-4">
-        Total:{" "}
-        <span
-          className={cn(
-            "text-green-400",
-            type === "expenses" && "text-red-400"
-          )}
-        >
-          {type === "entries" ? "+" : "-"}
-          {formatValue(total)}
-        </span>
-      </p>
-      <ScrollArea className="mt-3 h-[400px] md:h-[600px] lg:h-[650px] md:border md:p-2 md:rounded-xl mb-20 md:mb-0">
-        {orderByRegisters.length ? (
-          orderByRegisters.map((register) => (
-            <RegisterItem key={register.id} register={register} type={type} />
-          ))
-        ) : (
-          <div>poxa, nada encontrado :(</div>
-        )}
-      </ScrollArea>
+      <RegistersList
+        type={type}
+        registers={registers}
+        orderBy={orderBy}
+        searchQuery={searchInput}
+        filterTags={tags}
+      />
     </div>
   );
 };

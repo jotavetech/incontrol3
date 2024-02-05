@@ -26,7 +26,7 @@ const RegisterItem = ({ register, type }: RegisterItemProps) => {
           +{formatValue(register.amount)}
         </p>
         <span className="text-xs text-zinc-400 break-words">
-          {register.updatedAt.getFullYear()}
+          {register.createdAt.toLocaleDateString("pt-BR")}
         </span>
       </div>
     </div>
