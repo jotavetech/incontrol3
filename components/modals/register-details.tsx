@@ -6,7 +6,6 @@ import useModal from "@/hooks/use-modal-store";
 
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
@@ -15,8 +14,6 @@ import {
 } from "@/components/ui/drawer";
 
 import { Button } from "../ui/button";
-
-import AddRegisterForm from "../forms/edit-register-form";
 
 import { useEffect } from "react";
 
@@ -29,10 +26,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
+
 import { Separator } from "../ui/separator";
+import { useRouter } from "next/navigation";
 
 const RegisterDetails = () => {
   const { isOpen, onClose, type, data } = useModal();
+  const { push } = useRouter();
 
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -50,7 +50,12 @@ const RegisterDetails = () => {
     };
   }, [onClose]);
 
-  const handleClose = () => {
+  const handleClose: () => void = () => {
+    onClose();
+  };
+
+  const handleNavigate: (link: string) => void = (link) => {
+    push(link);
     onClose();
   };
 
@@ -90,6 +95,7 @@ const RegisterDetails = () => {
             >
               Close
             </Button>
+
             <Button className="w-1/2" variant={"secondary"}>
               Go to {data.type}
             </Button>
@@ -136,7 +142,12 @@ const RegisterDetails = () => {
           >
             Close
           </Button>
-          <Button variant={"secondary"}>Go to {data.type}</Button>
+          <Button
+            variant={"secondary"}
+            onClick={() => handleNavigate(`/${data.type}`)}
+          >
+            Go to {data.type}
+          </Button>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
