@@ -7,6 +7,18 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
+import {
   Form,
   FormControl,
   FormField,
@@ -190,15 +202,34 @@ const EditRegisterForm = () => {
           >
             Save
           </Button>
-          <Button
-            variant="secondary"
-            className="w-full mt-2 gap-1 flex items-center"
-            type="button"
-            disabled={loading}
-            onClick={onDelete}
-          >
-            <Trash className="w-4 h-4" /> Delete
-          </Button>
+
+          <AlertDialog>
+            <AlertDialogTrigger disabled={loading}>
+              <Button
+                variant="secondary"
+                className="w-full mt-2 gap-1 flex items-center"
+                type="button"
+                disabled={loading}
+              >
+                <Trash className="w-4 h-4" /> Delete
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your register.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel disabled={loading}>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={onDelete} disabled={loading}>
+                  Continue
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </form>
     </Form>
