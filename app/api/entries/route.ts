@@ -36,6 +36,39 @@ export async function POST(req: Request) {
   }
 }
 
+export async function PATCH(req: Request) {
+  try {
+    const { name, description, amount, id } = await req.json();
+    const user = await currentUser();
+
+    if (!name || !description || !amount) {
+      return new NextResponse("Missing fields", { status: 500 });
+    }
+
+    if (!user) {
+      return new NextResponse("Unauthorized, Missing User Information", {
+        status: 401,
+      });
+    }
+
+    const entry = await db.entry.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+        description,
+        amount,
+      },
+    });
+
+    return NextResponse.json({ entry });
+  } catch (error) {
+    console.log("[ENTRIES_PATCH]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}
+
 export async function GET(req: Request) {
   try {
     const user = await currentUser();

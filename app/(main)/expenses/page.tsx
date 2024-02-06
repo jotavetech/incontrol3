@@ -24,8 +24,6 @@ const ExpensesPage = async () => {
     },
   });
 
-  const getTotal = () => expenses.reduce((ac, curr) => ac + curr.amount, 0);
-
   return (
     <div>
       <div className="flex w-full lg:max-w-[1600px]  justify-between items-center">
@@ -47,11 +45,7 @@ const ExpensesPage = async () => {
       <div className="flex flex-col h-full w-full lg:max-w-[1600px] items-center md:items-start md:px-8 px-2">
         <Separator className="md:hidden" />
 
-        <RegistersTable
-          type="expenses"
-          registers={expenses}
-          total={getTotal()}
-        />
+        <RegistersTable type="expenses" registers={expenses} />
       </div>
     </div>
   );

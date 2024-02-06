@@ -36,6 +36,39 @@ export async function POST(req: Request) {
   }
 }
 
+export async function PATCH(req: Request) {
+  try {
+    const { name, description, amount, id } = await req.json();
+    const user = await currentUser();
+
+    if (!name || !description || !amount) {
+      return new NextResponse("Missing fields", { status: 500 });
+    }
+
+    if (!user) {
+      return new NextResponse("Unauthorized, Missing User Information", {
+        status: 401,
+      });
+    }
+
+    const expense = await db.expense.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+        description,
+        amount,
+      },
+    });
+
+    return NextResponse.json({ expense });
+  } catch (error) {
+    console.log("[EXPENSES_PATCH]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}
+
 export async function GET(req: Request) {
   try {
     const user = await currentUser();
@@ -58,6 +91,34 @@ export async function GET(req: Request) {
     return NextResponse.json({ expenses });
   } catch (error) {
     console.log("[EXPENSES_GET]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const { id } = await req.json();
+    const user = await currentUser();
+
+    if (!id) {
+      return new NextResponse("Missing ID", { status: 500 });
+    }
+
+    if (!user) {
+      return new NextResponse("Unauthorized, Missing User Information", {
+        status: 401,
+      });
+    }
+
+    await db.expense.delete({
+      where: {
+        id,
+      },
+    });
+
+    return NextResponse.json("Resource deleted successfully", { status: 204 });
+  } catch (error) {
+    console.log("[EXPENSES_DELETE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

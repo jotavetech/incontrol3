@@ -1,3 +1,4 @@
+import useModal from "@/hooks/use-modal-store";
 import { cn, formatValue } from "@/lib/utils";
 import { Entry, Expense } from "@prisma/client";
 
@@ -7,8 +8,13 @@ interface RegisterItemProps {
 }
 
 const RegisterItem = ({ register, type }: RegisterItemProps) => {
+  const { onOpen } = useModal();
+
   return (
-    <div className="py-2 px-4 bg-[#f8f8f8] dark:bg-[#0c0c0c] shadow-sm rounded-xl mb-2 flex items-center h-[70px]">
+    <div
+      className="py-2 px-4 bg-[#f8f8f8] dark:bg-[#0c0c0c] shadow-sm rounded-xl mb-2 flex items-center h-[70px] cursor-pointer hover:opacity-75 transition-opacity"
+      onClick={() => onOpen("editRegister", { ...register, type })}
+    >
       <div className="w-1/2">
         <p className="Capitalize">{register.name}</p>
         <span className="text-xs text-zinc-400 break-words">

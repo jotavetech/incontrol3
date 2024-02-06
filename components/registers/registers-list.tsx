@@ -36,17 +36,18 @@ const RegistersList = ({
 }: RegistersListProps) => {
   const [orderByRegisters, setOrderByRegisters] = useState<Register[]>([]);
 
-  useEffect(() => {
-    handleFilters();
-  }, []);
+  // TERMINAR FUNÇÃO DE FILTROS
 
   const handleFilters = () => {
+    if (!filterTags.length || searchQuery) {
+      handleOrderBy(registers);
+    }
+
     if (filterTags.length) {
       const filteredByTags = registers.filter((register) =>
         filterTags.includes(register.category)
       );
 
-      console.log(filteredByTags);
       return handleOrderBy(filteredByTags);
     }
 
@@ -59,8 +60,6 @@ const RegistersList = ({
 
       return handleOrderBy(filteredBySearch);
     }
-
-    handleOrderBy(registers);
   };
 
   const handleOrderBy = (filteredRegisters: Register[]) => {
@@ -90,7 +89,7 @@ const RegistersList = ({
 
   useEffect(() => {
     handleFilters();
-  }, [filterTags, searchQuery]);
+  }, [filterTags, searchQuery, orderBy]);
 
   return (
     <>
@@ -107,7 +106,7 @@ const RegistersList = ({
           {formatValue(0)}
         </span>
       </p>
-      <ScrollArea className="mt-3 h-[400px] md:h-[600px] lg:h-[650px] md:border md:p-2 md:rounded-xl mb-20 md:mb-0">
+      <ScrollArea className="mt-3 h-[600px] lg:h-[650px] md:border md:p-2 md:rounded-xl mb-28 md:mb-0">
         {orderByRegisters.length ? (
           orderByRegisters.map((register) => (
             <RegisterItem key={register.id} register={register} type={type} />

@@ -16,7 +16,7 @@ import {
 
 import { Button } from "../ui/button";
 
-import AddRegisterForm from "../forms/add-register-form";
+import AddRegisterForm from "../forms/edit-register-form";
 
 import { useEffect } from "react";
 

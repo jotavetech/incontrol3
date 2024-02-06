@@ -10,15 +10,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { ScrollArea } from "../ui/scroll-area";
 import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
 
-import { cn, formatValue } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
-import RegisterItem from "./register-item";
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RegistersList from "./registers-list";
 
 type Register = {
@@ -35,7 +32,6 @@ type Register = {
 interface RegistersTable {
   type: "entries" | "expenses";
   registers: Register[];
-  total: number;
 }
 
 type OrderByProps =
@@ -44,7 +40,7 @@ type OrderByProps =
   | "createdAtAsc"
   | "createdAtDesc";
 
-const RegistersTable = ({ type, registers, total }: RegistersTable) => {
+const RegistersTable = ({ type, registers }: RegistersTable) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchIsDisabled, setSearchIsDisabled] = useState(false);
 

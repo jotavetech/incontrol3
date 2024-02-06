@@ -91,7 +91,7 @@ const AddRegisterForm = () => {
       title: `${registerType} Created With Success!`,
       description: `${name}: ${formatValue(amount)}`,
       className:
-        "dark:border-green-500 dark:bg-[#081700] dark:text-white bg-green-200 border-green-500 text-black rounded-xl capitalize",
+        "dark:border-white dark:bg-[#000000] dark:text-white bg-zinc-100 border-black text-black rounded-xl capitalize",
       duration: 3000,
     });
 

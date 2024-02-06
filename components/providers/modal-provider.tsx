@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import CreateRegister from "../modals/create-register";
 import RegisterDetails from "../modals/register-details";
+import EditRegister from "../modals/edit-register";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -18,6 +19,7 @@ const ModalProvider = () => {
     <>
       <CreateRegister />
       <RegisterDetails />
+      <EditRegister />
     </>
   );
 };
