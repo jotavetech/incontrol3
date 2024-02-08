@@ -117,8 +117,7 @@ const EditRegisterForm = () => {
         "aria-label": "Register notification",
         title: `Register Deleted With Success!`,
         description: `Success on register delete`,
-        className:
-          "dark:border-white dark:bg-[#000000] dark:text-white bg-zinc-100 border-black text-black rounded-xl capitalize",
+        className: "capitalize rounded-xl",
         duration: 3000,
       });
     } catch (error) {

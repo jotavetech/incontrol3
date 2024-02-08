@@ -25,7 +25,7 @@ const HomeRegisterItems = ({ type, registers }: HomeRegisterItemsTypeProps) => {
         registers.map((register) => (
           <button
             key={register.id}
-            className="flex w-full justify-between p-4 bg-[#f8f8f8] dark:bg-[#0c0c0c] mb-2 rounded-xl hover:opacity-70 transition-opacity"
+            className="flex w-full justify-between p-4 bg-[#fbfbfb] dark:bg-[#0c0c0c] mb-2 rounded-xl hover:opacity-70 transition-opacity"
             onClick={() => onOpen("registerDetails", { ...register, type })}
           >
             <p>{register.name}</p>

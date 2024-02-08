@@ -90,8 +90,7 @@ const AddRegisterForm = () => {
       "aria-label": "Register notification",
       title: `${registerType} Created With Success!`,
       description: `${name}: ${formatValue(amount)}`,
-      className:
-        "dark:border-white dark:bg-[#000000] dark:text-white bg-zinc-100 border-black text-black rounded-xl capitalize",
+      className: "capitalize rounded-xl",
       duration: 3000,
     });
 
