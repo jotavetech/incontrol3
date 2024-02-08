@@ -9,7 +9,7 @@ import {
 
 import { cn, formatValue } from "@/lib/utils";
 
-import { BarChart, Plus } from "lucide-react";
+import { BarChart, Frown, Laugh, Meh, Plus } from "lucide-react";
 
 interface HomeMonthStatusProps {
   entriesValue: number;
@@ -21,7 +21,7 @@ const HomeMonthStatus = ({
   expensesValue,
 }: HomeMonthStatusProps) => {
   const isPositive = entriesValue > expensesValue;
-  const isZero = !entriesValue && !expensesValue;
+  const isZero = entriesValue - expensesValue === 0;
 
   return (
     <Card className="md:h-[250px] rounded-2xl shadow-sm">
@@ -31,7 +31,7 @@ const HomeMonthStatus = ({
           <BarChart className="opacity-70" />
         </CardTitle>
         <CardDescription className="text-xs md:text-base">
-          Currently your status is:
+          Remaining money for the month
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -44,6 +44,13 @@ const HomeMonthStatus = ({
         >
           {isPositive && <Plus className="w-4 h-4" />}
           {formatValue(entriesValue - expensesValue)}
+          {isPositive ? (
+            <Laugh className="ml-1 w-5 h-5" />
+          ) : !isPositive && !isZero ? (
+            <Frown className="ml-1 w-5 h-5" />
+          ) : (
+            <Meh className="ml-1 w-5 h-5" />
+          )}
         </p>
       </CardContent>
       <CardFooter>
