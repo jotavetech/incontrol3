@@ -99,7 +99,11 @@ const RegisterDetails = () => {
               Close
             </Button>
 
-            <Button className="w-1/2" variant={"secondary"}>
+            <Button
+              className="w-1/2"
+              variant={"secondary"}
+              onClick={() => handleNavigate(`/${data.type}`)}
+            >
               Go to {data.type}
             </Button>
           </DialogFooter>
