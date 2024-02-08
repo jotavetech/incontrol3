@@ -89,7 +89,7 @@ const RegistersList = ({
 
   useEffect(() => {
     handleFilters();
-  }, [filterTags, searchQuery, orderBy]);
+  }, [filterTags, searchQuery, orderBy, registers]);
 
   return (
     <>
