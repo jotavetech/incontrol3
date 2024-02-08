@@ -28,6 +28,7 @@ import {
 } from "../ui/dialog";
 
 import { Separator } from "../ui/separator";
+
 import { useRouter } from "next/navigation";
 
 const RegisterDetails = () => {

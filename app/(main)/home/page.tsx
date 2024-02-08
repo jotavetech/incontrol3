@@ -3,14 +3,6 @@ import HomeMonthStatus from "@/components/home/home-month-status";
 import HomeRegisterCard from "@/components/home/home-register-card";
 import HomeMobileMenu from "@/components/home/home-mobile-menu";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
 import { Separator } from "@/components/ui/separator";
 
 import { Star, BarChart3 } from "lucide-react";
@@ -18,28 +10,10 @@ import { Star, BarChart3 } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
 
 import { currentUser } from "@/lib/current-user";
-
-import { redirect } from "next/navigation";
-
+import { getAtualDateRegisters, monthsMap } from "@/lib/utils";
 import { db } from "@/lib/db";
 
-const resumeMock = [
-  {
-    expenses: 200,
-    entries: 8000000,
-    mouth: "January",
-  },
-  {
-    expenses: 500,
-    entries: 2200,
-    mouth: "December",
-  },
-  {
-    expenses: 700,
-    entries: 800,
-    mouth: "November",
-  },
-];
+import { redirect } from "next/navigation";
 
 const HomePage = async () => {
   const user = await currentUser();
@@ -66,11 +40,13 @@ const HomePage = async () => {
 
   const getTotal = (type: "expense" | "entry") => {
     if (type === "expense") {
-      return expenses.reduce((ac, curr) => ac + curr.amount, 0);
+      const atualMonthExpenses = getAtualDateRegisters(expenses);
+      return atualMonthExpenses.reduce((ac, curr) => ac + curr.amount, 0);
     }
 
     if (type === "entry") {
-      return entries.reduce((ac, curr) => ac + curr.amount, 0);
+      const atualMonthEntries = getAtualDateRegisters(entries);
+      return atualMonthEntries.reduce((ac, curr) => ac + curr.amount, 0);
     }
 
     return 0;
@@ -107,20 +83,12 @@ const HomePage = async () => {
             />
           </div>
           <div className="md:w-1/2">
-            {/* <CarouselContent>
-              {resumeMock.map((resume) => (
-                <CarouselItem key={resume.expenses} className="cursor-pointer"> */}
             <HomeResumeCard
               expenses={getTotal("expense")}
               entries={getTotal("entry")}
-              mouth={"January"}
+              month={monthsMap[new Date().getMonth()]}
             />
-            {/* </CarouselItem>
-              ))} */}
           </div>
-          {/* <CarouselNext className="hidden md:flex right-4 opacity-20 hover:opacity-100" />
-            <CarouselPrevious className="hidden md:flex left-4 opacity-20 hover:opacity-100" />
-          </Carousel> */}
         </div>
         <div className="w-full lg:max-w-[1600px] mb-20">
           <p className="pl-4 my-4 font-semibold text-base flex gap-2 items-center md:text-2xl md:my-8">

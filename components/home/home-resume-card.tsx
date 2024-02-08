@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -9,29 +11,30 @@ import {
 
 import { formatValue } from "@/lib/utils";
 
-import {
-  ArrowLeft,
-  ArrowRight,
-  CircleDollarSign,
-  Minus,
-  Plus,
-} from "lucide-react";
+import { CircleDollarSign, Minus, Plus } from "lucide-react";
+
+import { useRouter } from "next/navigation";
 
 interface HomeResumeCardProps {
-  mouth: string;
+  month: string;
   entries: number;
   expenses: number;
 }
 
-const HomeResumeCard = ({ mouth, entries, expenses }: HomeResumeCardProps) => {
+const HomeResumeCard = ({ month, entries, expenses }: HomeResumeCardProps) => {
+  const { push } = useRouter();
+
   return (
-    <Card className="md:h-[250px] rounded-2xl shadow-sm">
+    <Card
+      className="md:h-[250px] rounded-2xl shadow-sm"
+      onClick={() => push("/analytics")}
+    >
       <CardHeader>
         <CardTitle className="text-lg md:text-2xl flex gap-2 items-center justify-between capitalize">
-          {mouth} Resume <CircleDollarSign className="opacity-70" />
+          {month} Resume <CircleDollarSign className="opacity-70" />
         </CardTitle>
         <CardDescription className="text-xs md:text-base">
-          This is the result for the month of {mouth}:
+          This is the result for the month of {month}:
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -53,8 +56,7 @@ const HomeResumeCard = ({ mouth, entries, expenses }: HomeResumeCardProps) => {
       </CardContent>
       <CardFooter>
         <p className="text-gray-800 text-xs dark:text-zinc-400 flex items-center gap-2">
-          Swipe to see past summaries <ArrowLeft className="w-3 h-3" />
-          <ArrowRight className="w-3 h-3" />
+          Click to see details
         </p>
       </CardFooter>
     </Card>
