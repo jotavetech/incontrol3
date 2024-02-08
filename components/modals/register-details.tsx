@@ -2,7 +2,7 @@
 
 import useModal from "@/hooks/use-modal-store";
 
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, format, parseISO } from "date-fns";
 
 import {
   Drawer,
@@ -60,6 +60,10 @@ const RegisterDetails = () => {
     onClose();
   };
 
+  const formatedDate = formatDistanceToNow(
+    data.createdAt ? data.createdAt : new Date()
+  );
+
   if (isDesktop) {
     return (
       <Dialog open={isModalOpen} onOpenChange={handleClose}>
@@ -83,9 +87,7 @@ const RegisterDetails = () => {
           </div>
           <div className="mt-5 flex justify-between">
             <p className="font-bold">{data.category}</p>
-            <span className="text-zinc-500">
-              {formatDistanceToNow(data.createdAt!)}
-            </span>
+            <span className="text-zinc-500">{formatedDate}</span>
           </div>
           <DialogFooter className="w-full flex">
             <Button
@@ -129,9 +131,7 @@ const RegisterDetails = () => {
 
             <div className="mt-5 flex justify-between">
               <p className="font-bold">{data.category}</p>
-              <span className="text-zinc-500">
-                {formatDistanceToNow(data.createdAt!)}
-              </span>
+              <span className="text-zinc-500">{formatedDate}</span>
             </div>
           </div>
         </div>
