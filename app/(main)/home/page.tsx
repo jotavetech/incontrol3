@@ -80,6 +80,7 @@ const HomePage = async () => {
             <HomeMonthStatus
               entriesValue={getTotal("entry")}
               expensesValue={getTotal("expense")}
+              month={monthsMap[new Date().getMonth()]}
             />
           </div>
           <div className="md:w-1/2">

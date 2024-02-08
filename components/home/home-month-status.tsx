@@ -14,11 +14,13 @@ import { BarChart, Frown, Laugh, Meh, Plus } from "lucide-react";
 interface HomeMonthStatusProps {
   entriesValue: number;
   expensesValue: number;
+  month: string;
 }
 
 const HomeMonthStatus = ({
   entriesValue,
   expensesValue,
+  month,
 }: HomeMonthStatusProps) => {
   const isPositive = entriesValue > expensesValue;
   const isZero = entriesValue - expensesValue === 0;
@@ -27,7 +29,7 @@ const HomeMonthStatus = ({
     <Card className="md:h-[250px] rounded-2xl shadow-sm">
       <CardHeader>
         <CardTitle className="text-lg md:text-2xl flex gap-2 items-center capitalize justify-between">
-          Current Month Status
+          Current Month Status ({month})
           <BarChart className="opacity-70" />
         </CardTitle>
         <CardDescription className="text-xs md:text-base">
