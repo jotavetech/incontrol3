@@ -1,8 +1,8 @@
 "use client";
 
-// FIX CREATED AT FORMAT
-
 import useModal from "@/hooks/use-modal-store";
+
+import { formatDistanceToNow } from "date-fns";
 
 import {
   Drawer,
@@ -84,7 +84,7 @@ const RegisterDetails = () => {
           <div className="mt-5 flex justify-between">
             <p className="font-bold">{data.category}</p>
             <span className="text-zinc-500">
-              {data.createdAt?.getFullYear()}
+              {formatDistanceToNow(data.createdAt!)}
             </span>
           </div>
           <DialogFooter className="w-full flex">
@@ -130,7 +130,7 @@ const RegisterDetails = () => {
             <div className="mt-5 flex justify-between">
               <p className="font-bold">{data.category}</p>
               <span className="text-zinc-500">
-                {data.createdAt?.getFullYear()}
+                {formatDistanceToNow(data.createdAt!)}
               </span>
             </div>
           </div>
