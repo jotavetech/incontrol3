@@ -5,6 +5,7 @@ import RegisterItem from "./register-item";
 import { ScrollArea } from "../ui/scroll-area";
 import { cn, formatValue } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { SearchX } from "lucide-react";
 
 type Register = {
   id: string;
@@ -106,13 +107,16 @@ const RegistersList = ({
           {formatValue(0)}
         </span>
       </p>
-      <ScrollArea className="mt-3 h-[600px] lg:h-[650px] md:border md:p-2 md:rounded-xl mb-28 md:mb-0">
+      <ScrollArea className="mt-3 h-full lg:h-[650px] md:border md:p-2 md:rounded-xl pb-20 md:pb-0">
         {orderByRegisters.length ? (
           orderByRegisters.map((register) => (
             <RegisterItem key={register.id} register={register} type={type} />
           ))
         ) : (
-          <div>poxa, nada encontrado :(</div>
+          <div className="flex flex-col items-center pt-20 text-zinc-400">
+            <SearchX className="w-12 h-12" />{" "}
+            <p className="text-lg">Sorry, nothing found!</p>
+          </div>
         )}
       </ScrollArea>
     </>
