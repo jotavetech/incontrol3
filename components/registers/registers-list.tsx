@@ -78,6 +78,8 @@ const RegistersList = ({
 
   handleOrderBy();
 
+  const totalAmount = registers.reduce((ac, curr) => ac + curr.amount, 0);
+
   return (
     <>
       {" "}
@@ -90,7 +92,7 @@ const RegistersList = ({
           )}
         >
           {type === "entries" ? "+" : "-"}
-          {formatValue(0)}
+          {formatValue(totalAmount || 0)}
         </span>
       </p>
       <ScrollArea className="mt-3 h-full lg:h-[650px] md:border md:p-2 md:rounded-xl pb-20 md:pb-0">
