@@ -93,36 +93,32 @@ const RegistersTable = ({ type, registers }: RegistersTable) => {
       </div>
       <div className="mt-4">
         <div className="px-1 flex flex-wrap gap-2">
-          {!searchInput && (
-            <>
-              <p>Tags: </p>
-              <Badge
-                variant={"outline"}
-                onClick={() => setFilterThisMonth(!filterThisMonth)}
-                className={cn(
-                  "capitalize cursor-pointer",
-                  filterThisMonth &&
-                    "bg-black text-white border-black dark:bg-white dark:text-black"
-                )}
-              >
-                This Month
-              </Badge>
-              {Object.values(categories).map((category) => (
-                <Badge
-                  key={category}
-                  variant={"outline"}
-                  className={cn(
-                    "capitalize cursor-pointer",
-                    tagExistsOnState(category) &&
-                      "bg-black text-white border-black dark:bg-white dark:text-black"
-                  )}
-                  onClick={() => handleTags(category)}
-                >
-                  {category.toLowerCase()}
-                </Badge>
-              ))}
-            </>
-          )}
+          <p>Tags: </p>
+          <Badge
+            variant={"outline"}
+            onClick={() => setFilterThisMonth(!filterThisMonth)}
+            className={cn(
+              "capitalize cursor-pointer",
+              filterThisMonth &&
+                "bg-black text-white border-black dark:bg-white dark:text-black"
+            )}
+          >
+            This Month
+          </Badge>
+          {Object.values(categories).map((category) => (
+            <Badge
+              key={category}
+              variant={"outline"}
+              className={cn(
+                "capitalize cursor-pointer",
+                tagExistsOnState(category) &&
+                  "bg-black text-white border-black dark:bg-white dark:text-black"
+              )}
+              onClick={() => handleTags(category)}
+            >
+              {category.toLowerCase()}
+            </Badge>
+          ))}
         </div>
       </div>
       <RegistersList
