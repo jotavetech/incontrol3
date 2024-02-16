@@ -29,7 +29,8 @@ const RegisterItem = ({ register, type }: RegisterItemProps) => {
             type === "expenses" && "text-red-400"
           )}
         >
-          +{formatValue(register.amount)}
+          {type === "expenses" ? "-" : "+"}
+          {formatValue(register.amount)}
         </p>
         <span className="text-xs text-zinc-400 break-words">
           {register.createdAt.toLocaleDateString("pt-BR")}
