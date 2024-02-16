@@ -13,7 +13,7 @@ import {
 import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
 
-import { cn } from "@/lib/utils";
+import { cn, getAtualDateRegisters } from "@/lib/utils";
 
 import { useState } from "react";
 import RegistersList from "./registers-list";
@@ -43,7 +43,11 @@ type OrderByProps =
 const RegistersTable = ({ type, registers }: RegistersTable) => {
   const [searchInput, setSearchInput] = useState("");
 
-  const [filterThisMonth, setFilterThisMonth] = useState(true);
+  const [filterThisMonth, setFilterThisMonth] = useState(() => {
+    const thisMonthRegisters = getAtualDateRegisters(registers);
+
+    return !!thisMonthRegisters.length;
+  });
 
   const [tags, setTags] = useState<string[]>([]);
   const [orderBy, setOrderBy] = useState<OrderByProps>("createdAtDesc");
