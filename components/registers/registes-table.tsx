@@ -42,7 +42,8 @@ type OrderByProps =
 
 const RegistersTable = ({ type, registers }: RegistersTable) => {
   const [searchInput, setSearchInput] = useState("");
-  const [searchIsDisabled, setSearchIsDisabled] = useState(false);
+
+  const [filterThisMonth, setFilterThisMonth] = useState(true);
 
   const [tags, setTags] = useState<string[]>([]);
   const [orderBy, setOrderBy] = useState<OrderByProps>("createdAtDesc");
@@ -67,7 +68,6 @@ const RegistersTable = ({ type, registers }: RegistersTable) => {
           placeholder="Search by..."
           className="rounded-xl"
           value={searchInput}
-          disabled={searchIsDisabled}
           onChange={({ target }) => setSearchInput(target.value)}
         />
         <Select
@@ -94,10 +94,10 @@ const RegistersTable = ({ type, registers }: RegistersTable) => {
               <p>Tags: </p>
               <Badge
                 variant={"outline"}
-                onClick={() => handleTags("THIS_MONTH")}
+                onClick={() => setFilterThisMonth(!filterThisMonth)}
                 className={cn(
                   "capitalize cursor-pointer",
-                  tagExistsOnState("THIS_MONTH") &&
+                  filterThisMonth &&
                     "bg-black text-white border-black dark:bg-white dark:text-black"
                 )}
               >
@@ -122,6 +122,7 @@ const RegistersTable = ({ type, registers }: RegistersTable) => {
         </div>
       </div>
       <RegistersList
+        thisMonth={filterThisMonth}
         type={type}
         registers={registers}
         orderBy={orderBy}
