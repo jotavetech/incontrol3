@@ -38,7 +38,7 @@ const MobileBar = () => {
           <Wallet />
           Expenses
         </MobileNavButton>
-        <MobileNavButton link="resume">
+        <MobileNavButton link="analytics">
           <BarChart />
           Resume
         </MobileNavButton>

@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-type LinkType = "home" | "entries" | "expenses" | "resume";
+type LinkType = "home" | "entries" | "expenses" | "analytics";
 
 interface MobileNavButtonProps {
   children: ReactNode;

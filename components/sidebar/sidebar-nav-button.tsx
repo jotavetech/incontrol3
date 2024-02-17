@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 import { usePathname } from "next/navigation";
 
-type LinkType = "home" | "entries" | "expenses" | "resume/1";
+type LinkType = "home" | "entries" | "expenses" | "analytics";
 
 interface SidebarNavButtonProps {
   children: ReactNode;
