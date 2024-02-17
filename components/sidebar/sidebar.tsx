@@ -17,7 +17,7 @@ const Sidebar = () => {
   return (
     <div className="flex flex-col items-center h-full w-full dark:bg-[#0d0e0f] bg-[#fdfdfd] px-5 shadow-sm">
       <h1 className="text-xl font-bold md:text-3xl flex items-center py-14">
-        in<span className="text-red-500">Control</span>
+        Menu
       </h1>
       <nav className="w-full flex flex-col gap-4">
         <SidebarNavButton link="home">
