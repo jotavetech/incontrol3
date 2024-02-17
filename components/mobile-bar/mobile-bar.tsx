@@ -40,7 +40,7 @@ const MobileBar = () => {
         </MobileNavButton>
         <MobileNavButton link="analytics">
           <BarChart />
-          Resume
+          Analytics
         </MobileNavButton>
       </nav>
     </div>

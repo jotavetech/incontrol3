@@ -30,7 +30,7 @@ const Sidebar = () => {
           <Wallet className="w-5 h-5" /> Expenses
         </SidebarNavButton>
         <SidebarNavButton link="analytics">
-          <BarChart className="w-5 h-5" /> Resume
+          <BarChart className="w-5 h-5" /> Analytics
         </SidebarNavButton>
         <Separator />
         <Button
