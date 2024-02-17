@@ -1,3 +1,4 @@
+import Header from "@/components/header";
 import MobileBar from "@/components/mobile-bar/mobile-bar";
 import Sidebar from "@/components/sidebar/sidebar";
 
@@ -22,7 +23,10 @@ const MainLayout = async ({ children }: MainLayoutProps) => {
         <Sidebar />
       </div>
       <MobileBar />
-      <main className="md:pl-[250px] h-full">{children}</main>
+      <main className="md:pl-[250px] h-full">
+        <Header />
+        {children}
+      </main>
     </div>
   );
 };
