@@ -64,13 +64,15 @@ const RegistersResumeCard = ({ registers, type }: RegistersResumeCardProps) => {
         </p>
       </CardContent>
       <CardFooter>
-        <p className="flex gap-2 items-center text-sm md:text-xl opacity-90">
-          Only {monthsMap[new Date().getMonth()]} Total:{" "}
+        <div className="flex flex-col text-sm md:text-lg">
+          <p className="opacity-90 mb-1 text-zinc-700 dark:text-white">
+            Only {monthsMap[new Date().getMonth()]} Total:{" "}
+          </p>
           <span
             className={cn(
               `text-red-400 flex items-center`,
               type === "entries" && "text-green-400",
-              thisMonthRegistersAmount() === 0 && "text-zinc-400"
+              thisMonthRegistersAmount() === 0 && "text-zinc-400 "
             )}
           >
             {type === "entries" ? (
@@ -80,7 +82,7 @@ const RegistersResumeCard = ({ registers, type }: RegistersResumeCardProps) => {
             )}
             {formatValue(thisMonthRegistersAmount())}
           </span>
-        </p>
+        </div>
       </CardFooter>
     </Card>
   );

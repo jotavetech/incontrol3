@@ -1,11 +1,12 @@
 import HomeMobileMenu from "@/components/home/home-mobile-menu";
-import RegistersResumeCard from "@/components/resume/registers-resume-card";
+import RegistersResumeCard from "@/components/analytics/registers-resume-card";
 import { Separator } from "@/components/ui/separator";
 import { currentUser } from "@/lib/current-user";
 import { db } from "@/lib/db";
 import { UserButton } from "@clerk/nextjs";
-import { BarChart3, BarChart4, Tags } from "lucide-react";
+import { BarChart4, Tags } from "lucide-react";
 import { redirect } from "next/navigation";
+import CategoriesResume from "@/components/analytics/categories-resume";
 
 const AnalyticsPage = async () => {
   const user = await currentUser();
@@ -69,12 +70,12 @@ const AnalyticsPage = async () => {
             Most used categories <Tags className="w-4 h-4" />
           </p>
           <div className="w-full flex flex-col md:flex-row gap-5">
-            {/* <div className="md:w-1/2">
-              <HomeRegisterCard type="entries" registers={entries} />
+            <div className="md:w-1/2">
+              <CategoriesResume type="entries" registers={entriesRegisters} />
             </div>
             <div className="md:w-1/2">
-              <HomeRegisterCard type="expenses" registers={expenses} />
-            </div> */}
+              <CategoriesResume type="expenses" registers={expensesRegisters} />
+            </div>
           </div>
         </div>
       </div>
