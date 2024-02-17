@@ -5,7 +5,7 @@ import HomeMobileMenu from "@/components/home/home-mobile-menu";
 
 import { Separator } from "@/components/ui/separator";
 
-import { Star, BarChart3 } from "lucide-react";
+import { Star, BarChart3, Home } from "lucide-react";
 
 import { UserButton } from "@clerk/nextjs";
 
@@ -55,8 +55,8 @@ const HomePage = async () => {
   return (
     <div>
       <div className="flex w-full lg:max-w-[1600px]  justify-between items-center">
-        <h1 className="text-xl font-bold ml-4 my-4 md:ml-8 md:my-8 md:text-3xl flex items-center">
-          in<span className="text-red-500">Control</span>
+        <h1 className="text-xl font-bold ml-4 my-4 md:ml-8 md:my-8 md:text-3xl flex items-center gap-2">
+          Home <Home />
         </h1>
         <div className="hidden md:flex mr-8 my-8">
           <UserButton
