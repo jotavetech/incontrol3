@@ -1,3 +1,7 @@
+import { ModeTogglePresentation } from "@/components/mode-toggle-presentation";
+
+import Link from "next/link";
+
 import { ReactNode } from "react";
 
 interface AuthLayoutProps {
@@ -6,16 +10,20 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
-    <div className="min-w-full min-h-screen flex flex-col justify-start md:justify-center items-center">
-      <div className="text-center w-full space-y-2 mb-5 mt-10 md:my-5">
-        <h1 className="text-3xl md:text-6xl font-bold">
-          in<span className="text-red-500">Control</span>
-        </h1>
-        <p className="text-medium md:text-xl text-base">
-          Login to your account to be inControl.
-        </p>
+    <div className="relative">
+      <header className="border h-16 flex items-center justify-center bg-glass fixed w-full">
+        <nav className="w-full px-5 md:px-10 lg:max-w-[1300px] flex justify-between items-center">
+          <Link href="/" className="text-xl font-bold md:text-3xl">
+            in<span className="text-red-500">Control</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <ModeTogglePresentation aria-label="change theme" />
+          </div>
+        </nav>
+      </header>
+      <div className="w-full min-h-screen flex justify-center items-center">
+        {children}
       </div>
-      {children}
     </div>
   );
 };
