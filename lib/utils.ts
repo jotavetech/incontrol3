@@ -1,6 +1,7 @@
 import { Entry, Expense } from "@prisma/client";
 
 import { type ClassValue, clsx } from "clsx";
+import { register } from "module";
 
 import { twMerge } from "tailwind-merge";
 
@@ -43,4 +44,8 @@ export const getAtualDateRegisters = (registers: Register[]) => {
   );
 
   return atualRegisters;
+};
+
+export const getTotalRegistersAmount = (registers: Register[]) => {
+  return registers.reduce((ac, curr) => ac + curr.amount, 0);
 };

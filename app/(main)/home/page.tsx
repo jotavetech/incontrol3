@@ -4,13 +4,20 @@ import HomeRegisterCard from "@/components/home/home-register-card";
 
 import { Separator } from "@/components/ui/separator";
 
-import { Star, BarChart3, Home } from "lucide-react";
+import { BarChart3 } from "lucide-react";
 
 import { currentUser } from "@/lib/current-user";
-import { getAtualDateRegisters, monthsMap } from "@/lib/utils";
+import {
+  getAtualDateRegisters,
+  getTotalRegistersAmount,
+  monthsMap,
+} from "@/lib/utils";
+
 import { db } from "@/lib/db";
 
 import { redirect } from "next/navigation";
+
+import { Register } from "@/types";
 
 const HomePage = async () => {
   const user = await currentUser();
@@ -35,18 +42,9 @@ const HomePage = async () => {
     },
   });
 
-  const getTotal = (type: "expense" | "entry") => {
-    if (type === "expense") {
-      const atualMonthExpenses = getAtualDateRegisters(expenses);
-      return atualMonthExpenses.reduce((ac, curr) => ac + curr.amount, 0);
-    }
-
-    if (type === "entry") {
-      const atualMonthEntries = getAtualDateRegisters(entries);
-      return atualMonthEntries.reduce((ac, curr) => ac + curr.amount, 0);
-    }
-
-    return 0;
+  const getTotal = (registers: Register[]) => {
+    const atualMonthRegisters = getAtualDateRegisters(registers);
+    return getTotalRegistersAmount(atualMonthRegisters);
   };
 
   return (
@@ -56,15 +54,15 @@ const HomePage = async () => {
           <Separator className="md:hidden" />
           <div className="md:w-1/2">
             <HomeMonthStatus
-              entriesValue={getTotal("entry")}
-              expensesValue={getTotal("expense")}
+              entriesValue={getTotal(entries)}
+              expensesValue={getTotal(expenses)}
               month={monthsMap[new Date().getMonth()]}
             />
           </div>
           <div className="md:w-1/2">
             <HomeResumeCard
-              expenses={getTotal("expense")}
-              entries={getTotal("entry")}
+              entries={getTotal(entries)}
+              expenses={getTotal(expenses)}
               month={monthsMap[new Date().getMonth()]}
             />
           </div>

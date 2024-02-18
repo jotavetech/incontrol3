@@ -1,9 +1,11 @@
 import useModal from "@/hooks/use-modal-store";
+
 import { cn, formatValue } from "@/lib/utils";
-import { Entry, Expense } from "@prisma/client";
+
+import { Register } from "@/types";
 
 interface RegisterItemProps {
-  register: Expense | Entry;
+  register: Register;
   type: "expenses" | "entries";
 }
 

@@ -1,23 +1,17 @@
-import { EntryCategory, ExpenseCategory } from "@prisma/client";
-
 import RegisterItem from "./register-item";
 
 import { ScrollArea } from "../ui/scroll-area";
 
-import { cn, formatValue, getAtualDateRegisters } from "@/lib/utils";
+import {
+  cn,
+  formatValue,
+  getAtualDateRegisters,
+  getTotalRegistersAmount,
+} from "@/lib/utils";
 
 import { SearchX } from "lucide-react";
 
-type Register = {
-  id: string;
-  name: string;
-  description: string;
-  amount: number;
-  category: EntryCategory | ExpenseCategory;
-  createdAt: Date;
-  updatedAt: Date;
-  userId: string;
-};
+import { Register } from "@/types";
 
 type OrderBy = "amountAsc" | "amountDesc" | "createdAtAsc" | "createdAtDesc";
 
@@ -46,8 +40,6 @@ const RegistersList = ({
     registers = registers.filter((register) =>
       filterTags.includes(register.category)
     );
-
-  console.log(registers);
 
   if (searchQuery)
     registers = registers.filter(
@@ -78,8 +70,6 @@ const RegistersList = ({
 
   handleOrderBy();
 
-  const totalAmount = registers.reduce((ac, curr) => ac + curr.amount, 0);
-
   return (
     <>
       {" "}
@@ -92,7 +82,7 @@ const RegistersList = ({
           )}
         >
           {type === "entries" ? "+" : "-"}
-          {formatValue(totalAmount || 0)}
+          {formatValue(getTotalRegistersAmount(registers))}
         </span>
       </p>
       <ScrollArea className="mt-3 h-full lg:h-[650px] md:border md:p-2 md:rounded-xl pb-20 md:pb-0">

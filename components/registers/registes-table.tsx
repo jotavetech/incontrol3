@@ -16,18 +16,10 @@ import { Badge } from "../ui/badge";
 import { cn, getAtualDateRegisters } from "@/lib/utils";
 
 import { useState } from "react";
+
 import RegistersList from "./registers-list";
 
-type Register = {
-  id: string;
-  name: string;
-  description: string;
-  amount: number;
-  category: EntryCategory | ExpenseCategory;
-  createdAt: Date;
-  updatedAt: Date;
-  userId: string;
-};
+import { Register } from "@/types";
 
 interface RegistersTable {
   type: "entries" | "expenses";

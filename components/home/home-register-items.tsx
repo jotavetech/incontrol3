@@ -2,11 +2,11 @@ import useModal from "@/hooks/use-modal-store";
 
 import { cn, formatValue } from "@/lib/utils";
 
-import { Entry, Expense } from "@prisma/client";
+import { Register } from "@/types";
 
 interface HomeRegisterItemsTypeProps {
   type: "entries" | "expenses";
-  registers: Expense[] | Entry[];
+  registers: Register[];
 }
 
 const HomeRegisterItems = ({ type, registers }: HomeRegisterItemsTypeProps) => {

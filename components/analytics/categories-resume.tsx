@@ -4,10 +4,9 @@ import { Separator } from "../ui/separator";
 
 import { BarChart } from "lucide-react";
 
-import { Entry, Expense } from "@prisma/client";
 import CategoriesChart from "./categories-chart";
 
-type Register = Entry | Expense;
+import { Register } from "@/types";
 
 interface CategoriesResumeProps {
   type: "entries" | "expenses";

@@ -4,6 +4,7 @@ import CategoriesResume from "@/components/analytics/categories-resume";
 import { Separator } from "@/components/ui/separator";
 
 import { currentUser } from "@/lib/current-user";
+
 import { db } from "@/lib/db";
 
 import { Tags } from "lucide-react";

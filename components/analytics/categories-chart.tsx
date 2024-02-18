@@ -2,11 +2,9 @@
 
 import Chart from "react-apexcharts";
 
-import { Entry, Expense } from "@prisma/client";
-
 import { useTheme } from "next-themes";
 
-type Register = Entry | Expense;
+import { Register } from "@/types";
 
 interface CategoriesChartProps {
   registers: Register[];

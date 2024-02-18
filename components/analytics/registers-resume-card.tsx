@@ -9,11 +9,15 @@ import {
   CardTitle,
 } from "../ui/card";
 
-import { cn, formatValue, getAtualDateRegisters, monthsMap } from "@/lib/utils";
+import {
+  cn,
+  formatValue,
+  getAtualDateRegisters,
+  getTotalRegistersAmount,
+  monthsMap,
+} from "@/lib/utils";
 
-import { Entry, Expense } from "@prisma/client";
-
-type Register = Entry | Expense;
+import { Register } from "@/types";
 
 interface RegistersResumeCardProps {
   registers: Register[];
@@ -21,13 +25,11 @@ interface RegistersResumeCardProps {
 }
 
 const RegistersResumeCard = ({ registers, type }: RegistersResumeCardProps) => {
-  const allRegistersTotalAmount = () =>
-    registers.reduce((ac, curr) => ac + curr.amount, 0);
+  const allRegistersTotalAmount = getTotalRegistersAmount(registers);
 
   const thisMonthRegistersAmount = () => {
     const atualDateRegisters = getAtualDateRegisters(registers);
-
-    return atualDateRegisters.reduce((ac, curr) => ac + curr.amount, 0);
+    return getTotalRegistersAmount(atualDateRegisters);
   };
 
   return (
@@ -51,7 +53,7 @@ const RegistersResumeCard = ({ registers, type }: RegistersResumeCardProps) => {
             className={cn(
               `text-red-400 flex items-center`,
               type === "entries" && "text-green-400",
-              allRegistersTotalAmount() === 0 && "text-zinc-400"
+              allRegistersTotalAmount === 0 && "text-zinc-400"
             )}
           >
             {type === "entries" ? (
@@ -59,7 +61,7 @@ const RegistersResumeCard = ({ registers, type }: RegistersResumeCardProps) => {
             ) : (
               <Minus className="w-4 h-4" />
             )}
-            {formatValue(allRegistersTotalAmount())}
+            {formatValue(allRegistersTotalAmount)}
           </span>
         </p>
       </CardContent>
