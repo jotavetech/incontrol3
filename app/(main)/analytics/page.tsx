@@ -10,6 +10,7 @@ import { db } from "@/lib/db";
 import { Tags } from "lucide-react";
 
 import { redirect } from "next/navigation";
+import RegistersStatusCard from "@/components/analytics/registers-status-card";
 
 const AnalyticsPage = async () => {
   const user = await currentUser();
@@ -42,15 +43,23 @@ const AnalyticsPage = async () => {
           <p className="pl-4 font-semibold text-base flex gap-2 items-center md:hidden">
             Here its your resume!
           </p>
-          <div className="md:w-1/2">
+          <div className="md:w-1/3">
+            <RegistersStatusCard
+              entries={entriesRegisters}
+              expenses={expensesRegisters}
+            />
+          </div>
+          <Separator className="md:hidden" />
+          <div className="md:w-1/3">
             <RegistersResumeCard type="entries" registers={entriesRegisters} />
           </div>
-          <div className="md:w-1/2">
+          <div className="md:w-1/3">
             <RegistersResumeCard
               type="expenses"
               registers={expensesRegisters}
             />
           </div>
+          <Separator className="md:hidden" />
         </div>
         <div className="w-full lg:max-w-[1600px] mb-20">
           <p className="pl-4 my-4 font-semibold text-base flex gap-2 items-center md:text-2xl md:my-8">
