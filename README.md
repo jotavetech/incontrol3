@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# inControl 🚀
 
-## Getting Started
+inControl é uma aplicação de controle financeiro, criada usando uma combinação de ótimas tecnologias como: Typescript, NextJS, Prisma, PostgreSQL, TailwindCSS, shadcn-ui & Clerk.
 
-First, run the development server:
+## Para que serve? 🤔
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+O _inControl_ foi desenvolvido com objetivo de simplificar o controle dos seus gastos financeiros. Com ele você pode registrar todas as suas entradas e gastos, pode acompanhar o saldo disponível no mês atual e visualizar onde está concentrando suas entradas e gastos, por meio do nosso sistema de categorias.
+
+### Funcionalidades 📚
+
+- Adicionar registros de entradas e saídas
+- Editar e deletar registros
+- Categorizar registros
+- Visualizar receitas e despesas gerais ou do mês atual
+- Filtrar e ordernar lista de receitas e despesas
+- Ver um gráfico mostrando em que categorias estão focados seus registros
+
+### Principais tecnologias usadas ⚙️
+
+- Typescript
+- NextJS
+- Prisma
+- PostgreSQL
+- Clerk
+- TailwindCSS
+- shadcn-ui
+- Zod
+
+### Requisitos 🪛
+
+- Você precisar ter o [NodeJs](https://nodejs.org/en/) instalado localmente.
+- Você precisa configurar uma base de dados PostgreSQL, aqui foi usado a db grátis do [ElephantSQL](https://www.elephantsql.com/) e configurar uma aplicação usando [Clerk](https://clerk.com/) para a autenticação, seguindo o exemplo do código abaixo:
+
+_/.env_
+
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<key publica do clerk>
+CLERK_SECRET_KEY=<key secreta do clerk>
+
+DATABASE_URL=<url da base de dados>
+
+# NÃO MEXER:
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/home
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/home
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Fazer um clone e rodar localmente 💽
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para clonar o projeto escreva no console:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```terminal
+$ git clone https://github.com/jotavetech/incontrol3.git
+```
 
-## Learn More
+Se você fazer um clone com sucesso, agora entre no diretório que foi criado _incontrol3_ e digite no console:
 
-To learn more about Next.js, take a look at the following resources:
+```terminal
+# usando yarn:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+$ yarn install # pra instalar todas as dependências
+$ yarn dev # pra rodar o projeto em modo desenvolvedor
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# usando npm:
 
-## Deploy on Vercel
+$ npm install
+$ npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+O _inControl_ é um projeto open-source e se você quiser, pode contribuir criando um [Fork](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) e enviando um [Pull Request](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) com suas alterações 😊.
