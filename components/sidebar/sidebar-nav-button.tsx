@@ -26,7 +26,7 @@ const SidebarNavButton = ({ link, children }: SidebarNavButtonProps) => {
         variant={"primary"}
         className={cn(
           "w-full flex justify-start gap-2",
-          isActive && "opacity-60"
+          isActive && "opacity-50"
         )}
       >
         {children}
