@@ -16,8 +16,8 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col items-center h-full w-full dark:bg-[#0d0e0f] bg-[#fdfdfd] px-5 shadow-sm">
-      <h1 className="text-xl font-bold md:text-3xl flex items-center py-14">
-        Menu
+      <h1 className="text-3xl font-semibold flex items-center py-14 text-[#414141] dark:text-[#f0f0f0]">
+        Your easiest way to stay inControl
       </h1>
       <nav className="w-full flex flex-col gap-4">
         <SidebarNavButton link="home">
