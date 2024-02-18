@@ -21,7 +21,7 @@ const MobileNavButton = ({ link, children }: MobileNavButtonProps) => {
   return (
     <Button
       variant={"mobile"}
-      className={cn("w-12 h-12 rounded-full", isActive && "opacity-80")}
+      className={cn("w-12 h-12 rounded-full", isActive && "opacity-50")}
     >
       <Link
         href={`/${link}`}
