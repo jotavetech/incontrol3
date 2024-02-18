@@ -1,7 +1,6 @@
 import { Entry, Expense } from "@prisma/client";
 
 import { type ClassValue, clsx } from "clsx";
-import { register } from "module";
 
 import { twMerge } from "tailwind-merge";
 
