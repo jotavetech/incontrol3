@@ -42,7 +42,7 @@ const PresentationPage = async () => {
 
   return (
     <main className="relative bg-gradient-to-b from-white to-[#f7f7f7] dark:from-black dark:to-[#0d0d0d]">
-      <header className="border h-16 flex items-center justify-center bg-glass fixed w-full">
+      <header className="border-b h-16 flex items-center justify-center bg-glass fixed w-full">
         <nav className="w-full px-5 md:px-10 lg:max-w-[1300px] flex justify-between items-center">
           <h1 className="text-xl font-bold md:text-3xl">
             in<span className="text-red-500">Control</span>
