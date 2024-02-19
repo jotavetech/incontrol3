@@ -43,8 +43,8 @@ export const metadata: Metadata = {
     "jotavetech",
     "jotave.tech",
     "incontrol.com",
-    "incontrol3.vercel.com",
-    "incontrol3.vercel.app",
+    "incontrol.vercel.com",
+    "incontrol.vercel.app",
     "Front-end Developer",
     "FullStack Developer",
     "Back-end Developer",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
       {
         width: 1920,
         height: 1080,
-        url: "/images/incontrol_readme.png",
+        url: "https://github.com/jotavetech/incontrol3/raw/main/public/images/incontrol_readme.png",
         alt: "inControl website cover",
       },
     ],
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
     siteName: "inControl",
     description: "Your easiest way to stay inControl of your finances.",
     type: "website",
-    url: "https://incontrol3.vercel.app",
+    url: "https://incontrol.vercel.app",
   },
   publisher: "Jotavetech",
   twitter: {
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
       {
         width: 1920,
         height: 1080,
-        url: "/images/incontrol_readme.png",
+        url: "https://github.com/jotavetech/incontrol3/raw/main/public/images/incontrol_readme.png",
         alt: "inControl website cover",
       },
     ],
