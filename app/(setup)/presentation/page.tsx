@@ -294,8 +294,8 @@ const PresentationPage = async () => {
           </Accordion>
         </div>
       </section>
-      <footer className="w-full py-4 bg-white dark:bg-black text-center">
-        <p>
+      <footer className="mt-16 md:mt-24 w-full py-4 bg-white dark:bg-[#131313] text-center">
+        <p className="text-xs">
           InControl is an app created with much ❤️ by{" "}
           <a
             href="https://beacons.ai/jotavetech"
