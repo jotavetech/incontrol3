@@ -77,8 +77,8 @@ const RegistersList = ({
         Total:{" "}
         <span
           className={cn(
-            "text-green-400",
-            type === "expenses" && "text-red-400"
+            "text-[#006100] dark:text-[#55dd55]",
+            type === "expenses" && "text-red-500 dark:text-red-500"
           )}
         >
           {type === "entries" ? "+" : "-"}

@@ -40,7 +40,7 @@ const HomeResumeCard = ({ month, entries, expenses }: HomeResumeCardProps) => {
       <CardContent>
         <div className="flex items-center gap-2">
           Money that came in:{" "}
-          <span className="font-semibold text-green-400 flex items-center">
+          <span className="font-semibold text-[#006100] dark:text-[#55dd55] flex items-center">
             <Plus className="w-4 h-4" />
             {formatValue(entries)}
           </span>
@@ -48,7 +48,7 @@ const HomeResumeCard = ({ month, entries, expenses }: HomeResumeCardProps) => {
 
         <div className="flex items-center gap-2">
           Money spent on expenses:{" "}
-          <span className="font-semibold text-red-400 flex items-center">
+          <span className="font-semibold text-red-500 flex items-center">
             <Minus className="w-4 h-4" />
             {formatValue(expenses)}
           </span>

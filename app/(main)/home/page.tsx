@@ -48,10 +48,9 @@ const HomePage = async () => {
   };
 
   return (
-    <div>
-      <div className="flex flex-col h-full w-full lg:max-w-[1600px] items-center md:items-start md:px-8 px-2">
+    <div className="flex justify-center">
+      <div className="flex flex-col h-full w-full lg:max-w-[1600px] items-center md:px-8 px-2">
         <div className="w-full flex flex-col md:flex-row gap-5">
-          <Separator className="md:hidden" />
           <div className="md:w-1/2">
             <HomeMonthStatus
               entriesValue={getTotal(entries)}

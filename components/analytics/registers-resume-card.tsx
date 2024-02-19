@@ -51,8 +51,8 @@ const RegistersResumeCard = ({ registers, type }: RegistersResumeCardProps) => {
         <p className="flex gap-2 items-center text-2xl">
           <span
             className={cn(
-              `text-red-400 flex items-center`,
-              type === "entries" && "text-green-400",
+              `text-red-500 flex items-center`,
+              type === "entries" && "text-[#006100] dark:text-[#55dd55]",
               allRegistersTotalAmount === 0 && "text-zinc-400"
             )}
           >
@@ -66,14 +66,14 @@ const RegistersResumeCard = ({ registers, type }: RegistersResumeCardProps) => {
         </p>
       </CardContent>
       <CardFooter>
-        <div className="flex flex-col text-sm md:text-lg">
-          <p className="opacity-90 mb-1 text-zinc-700 dark:text-white">
-            Only {monthsMap[new Date().getMonth()]} Total:{" "}
+        <div className="flex flex-col text-xs md:text-base">
+          <p className="opacity-90 mb-1 text-zinc-700 dark:text-white capitalize">
+            {monthsMap[new Date().getMonth()]} {type} Total:{" "}
           </p>
           <span
             className={cn(
-              `text-red-400 flex items-center`,
-              type === "entries" && "text-green-400",
+              `text-red-500 flex items-center text-sm md:text-lg`,
+              type === "entries" && "text-[#006100] dark:text-[#55dd55]",
               thisMonthRegistersAmount() === 0 && "text-zinc-400 "
             )}
           >

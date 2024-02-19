@@ -1,7 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import { Separator } from "../ui/separator";
-
 import { BarChart } from "lucide-react";
 
 import CategoriesChart from "./categories-chart";
@@ -22,8 +20,7 @@ const CategoriesResume = ({ registers, type }: CategoriesResumeProps) => {
           <BarChart className="opacity-70" />
         </CardTitle>
       </CardHeader>
-      <Separator />
-      <CardContent className="h-[360px] p-2 lg:h-[320px] pt-6">
+      <CardContent className="h-[400px] p-2 pt-6">
         <CategoriesChart registers={registers} />
       </CardContent>
     </Card>

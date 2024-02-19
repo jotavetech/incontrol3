@@ -11,14 +11,16 @@ import { Button } from "../ui/button";
 
 import useModal from "@/hooks/use-modal-store";
 
+import Link from "next/link";
+
 const Sidebar = () => {
   const { onOpen } = useModal();
 
   return (
-    <div className="flex flex-col items-center h-full w-full dark:bg-[#0d0e0f] bg-[#fdfdfd] px-5 shadow-sm">
-      <h1 className="text-3xl font-semibold flex items-center py-14 text-[#414141] dark:text-[#f0f0f0]">
-        Your easiest way to stay inControl
-      </h1>
+    <div className="flex flex-col items-center h-full w-full dark:bg-[#090909] border-r bg-[#fefefe] px-5 shadow-sm">
+      <Link href="/home" className="text-xl font-bold md:text-3xl py-14">
+        in<span className="text-red-500">Control</span>
+      </Link>
       <nav className="w-full flex flex-col gap-4">
         <SidebarNavButton link="home">
           <Home className="w-5 h-5" /> Home
@@ -34,17 +36,13 @@ const Sidebar = () => {
         </SidebarNavButton>
         <Separator />
         <Button
-          className="flex justify-start gap-2"
+          className="flex justify-start gap-2 rounded-3xl"
           onClick={() => onOpen("createRegister")}
         >
           <Plus className="w-5 h-5" />
           Add Register
         </Button>
       </nav>
-      <div className="flex flex-col justify-center items-center w-full gap-2 text-sm absolute bottom-10 left-0 px-5">
-        <ModeToggle />
-        <p>Toggle theme.</p>
-      </div>
     </div>
   );
 };

@@ -58,8 +58,8 @@ const RegistersStatusCard = ({
       <CardContent>
         <p
           className={cn(
-            `text-red-400 flex items-center text-2xl`,
-            isTotalPositive && "text-green-400",
+            `text-red-500 flex items-center text-2xl`,
+            isTotalPositive && "text-[#006100] dark:text-[#55dd55]",
             isTotalZero && "text-zinc-400"
           )}
         >
@@ -75,26 +75,19 @@ const RegistersStatusCard = ({
         </p>
       </CardContent>
       <CardFooter>
-        <div className="flex flex-col text-sm md:text-lg">
+        <div className="flex flex-col text-xs md:text-base">
           <p className="opacity-90 mb-1 text-zinc-700 dark:text-white">
-            Only {monthsMap[new Date().getMonth()]} Status:{" "}
+            {monthsMap[new Date().getMonth()]} Status:{" "}
           </p>
           <span
             className={cn(
-              `text-red-400 flex items-center text-sm md:text-lg`,
-              isThisMonthPositive && "text-green-400",
+              `text-red-500 flex items-center text-sm md:text-lg`,
+              isThisMonthPositive && "text-[#006100] dark:text-[#55dd55]",
               isThisMonthZero && "text-zinc-400"
             )}
           >
             {isThisMonthPositive && <Plus className="w-4 h-4" />}
             {formatValue(thisMonthEntriesAmount - thisMonthExpensesAmount)}
-            {isThisMonthPositive ? (
-              <Laugh className="ml-1 w-5 h-5" />
-            ) : !isThisMonthPositive && !isThisMonthZero ? (
-              <Frown className="ml-1 w-5 h-5" />
-            ) : (
-              <Meh className="ml-1 w-5 h-5" />
-            )}
           </span>
         </div>
       </CardFooter>

@@ -23,10 +23,8 @@ const MainLayout = async ({ children }: MainLayoutProps) => {
         <Sidebar />
       </div>
       <MobileBar />
-      <main className="md:pl-[250px] h-full">
-        <Header />
-        {children}
-      </main>
+      <Header />
+      <main className="md:pl-[250px] h-full pt-20 md:pt-24">{children}</main>
     </div>
   );
 };

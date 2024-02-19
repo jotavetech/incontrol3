@@ -14,27 +14,27 @@ const RegisterItem = ({ register, type }: RegisterItemProps) => {
 
   return (
     <div
-      className="py-2 px-4 bg-[#f8f8f8] dark:bg-[#0c0c0c] shadow-sm rounded-xl mb-2 flex items-center h-[70px] cursor-pointer hover:opacity-75 transition-opacity"
+      className="py-2 px-4 bg-[#fdfdfd] dark:bg-[#0c0c0c] shadow-sm rounded-xl mb-2 flex items-center h-[80px] md:h-[90px] cursor-pointer hover:opacity-75 transition-opacity"
       onClick={() => onOpen("editRegister", { ...register, type })}
     >
       <div className="w-1/2">
-        <p className="Capitalize">{register.name}</p>
-        <span className="text-xs text-zinc-400 break-words">
+        <p className="capitalize text-lg">{register.name}</p>
+        <span className="text-sm text-zinc-600 dark:text-zinc-300 font-medium break-words">
           {register.category}
         </span>
       </div>
       <div className="w-1/2 flex items-end flex-col">
-        <p className="text-xs text-zinc-400">Total</p>
+        <p className="text-sm text-zinc-600 dark:text-zinc-300">Total</p>
         <p
           className={cn(
-            "text-green-400 text-[12px]",
-            type === "expenses" && "text-red-400"
+            "text-[#006100] dark:text-[#55dd55] text-base",
+            type === "expenses" && "text-red-500 dark:text-red-500"
           )}
         >
           {type === "expenses" ? "-" : "+"}
           {formatValue(register.amount)}
         </p>
-        <span className="text-xs text-zinc-400 break-words">
+        <span className="text-xs text-zinc-600 dark:text-zinc-300">
           {register.createdAt.toLocaleDateString("pt-BR")}
         </span>
       </div>

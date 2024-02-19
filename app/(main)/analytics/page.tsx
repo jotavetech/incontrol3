@@ -36,20 +36,16 @@ const AnalyticsPage = async () => {
   });
 
   return (
-    <div>
+    <div className="flex justify-center">
       <div className="flex flex-col h-full w-full lg:max-w-[1600px] items-center md:items-start md:px-8 px-2">
         <div className="w-full flex flex-col md:flex-row gap-5">
-          <Separator className="md:hidden" />
-          <p className="pl-4 font-semibold text-base flex gap-2 items-center md:hidden">
-            Here its your resume!
-          </p>
           <div className="md:w-1/3">
             <RegistersStatusCard
               entries={entriesRegisters}
               expenses={expensesRegisters}
             />
           </div>
-          <Separator className="md:hidden" />
+
           <div className="md:w-1/3">
             <RegistersResumeCard type="entries" registers={entriesRegisters} />
           </div>
@@ -59,7 +55,6 @@ const AnalyticsPage = async () => {
               registers={expensesRegisters}
             />
           </div>
-          <Separator className="md:hidden" />
         </div>
         <div className="w-full lg:max-w-[1600px] mb-20">
           <p className="pl-4 my-4 font-semibold text-base flex gap-2 items-center md:text-2xl md:my-8">

@@ -35,7 +35,7 @@ const CategoriesChart = ({ registers }: CategoriesChartProps) => {
 
   const chart = {
     options: {
-      colors: ["#DC2626"],
+      colors: ["#EF4444"],
       chart: {
         id: "basic-bar",
         background: "transparent",
