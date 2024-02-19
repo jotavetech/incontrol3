@@ -2,7 +2,7 @@
 
 inControl é uma aplicação de controle financeiro, criada usando uma combinação de ótimas tecnologias como: Typescript, NextJS, Prisma, PostgreSQL, TailwindCSS, shadcn-ui & Clerk.
 
-![inControl Home] (/public/images/incontrol_readme.png)
+![inControl Home](/public/images/incontrol_readme.png)
 
 ## Para que serve? 🤔
 
