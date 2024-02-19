@@ -79,7 +79,7 @@ export const metadata: Metadata = {
       {
         width: 1920,
         height: 1080,
-        url: "/incontrol_readme.png",
+        url: "/images/incontrol_readme.png",
         alt: "inControl website cover",
       },
     ],
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
       {
         width: 1920,
         height: 1080,
-        url: "/incontrol_readme.png",
+        url: "/images/incontrol_readme.png",
         alt: "inControl website cover",
       },
     ],
