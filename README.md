@@ -2,6 +2,8 @@
 
 inControl é uma aplicação de controle financeiro, criada usando uma combinação de ótimas tecnologias como: Typescript, NextJS, Prisma, PostgreSQL, TailwindCSS, shadcn-ui & Clerk.
 
+![inControl Home] (/public/images/incontrol_readme.png)
+
 ## Para que serve? 🤔
 
 O _inControl_ foi desenvolvido com objetivo de simplificar o controle dos seus gastos financeiros. Com ele você pode registrar todas as suas entradas e gastos, pode acompanhar o saldo disponível no mês atual e visualizar onde está concentrando suas entradas e gastos, por meio do nosso sistema de categorias.
