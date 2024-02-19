@@ -85,7 +85,7 @@ const RegistersList = ({
           {formatValue(getTotalRegistersAmount(registers))}
         </span>
       </p>
-      <ScrollArea className="mt-3 h-full lg:h-[650px] md:border md:p-2 md:rounded-xl pb-20 md:pb-0">
+      <ScrollArea className="my-3 h-full lg:h-[650px] md:border md:p-2 md:rounded-xl pb-20 md:pb-0">
         {registers.length ? (
           registers.map((register) => (
             <RegisterItem key={register.id} register={register} type={type} />
